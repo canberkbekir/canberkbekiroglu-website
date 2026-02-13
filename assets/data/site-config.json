@@ -1,0 +1,48 @@
+{
+  "versions": {
+    "css": "3.4.6",
+    "js": "3.4.6",
+    "data": "3.4.6"
+  },
+  "personal": {
+    "name": "Kenan EGE",
+    "nickname": "Kaegean",
+    "avatar": "./assets/images/avatar4.gif",
+    "titles": [
+      "👾 Computer Engineer",
+      "🎮 Game Developer",
+      "🎸 Amateur Musician"
+    ],
+    "location": "Warsaw, PL",
+    "about": {
+      "greeting": "HELLO THERE <span id='hero-accent'>!</span>",
+      "backup": "Game<span id='hero-accent'>DEV</span> <br/> KENAN",
+      "description": "I'm a <strong>computer engineer</strong> and <strong>game developer</strong> currently based in <strong>Warsaw</strong>. I have a passion for building strange worlds and the sturdy code that supports them. Whether it's a reliable <strong>backend system</strong> or a game mechanic that lets you play as a destructive cat, I love the process of creation."
+    }
+  },
+  "external": {
+    "steamUsername": "ZoneBee",
+    "spotifyArtistId": "2CMjhwFMDeusyTCoKcTNL8",
+    "githubUsername": "KenanAegean"
+  },
+  "cv": {
+    "default": "/assets/pdf/KenanEGE_CV_PL.pdf",
+    "turkey": "/assets/pdf/KenanEGE_CV_TR.pdf"
+  },
+  "overview_buttons": [
+    {
+      "id": "btn-projects",
+      "label": "View Projects",
+      "href": "#portfolio",
+      "style": "primary",
+      "visible": true
+    },
+    {
+      "id": "btn-games",
+      "label": "Play Games",
+      "href": "#games",
+      "style": "outline",
+      "visible": true
+    }
+  ]
+}

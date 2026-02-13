@@ -1,0 +1,60 @@
+{
+  "highlighted": [
+    {
+      "id": 3,
+      "title": "Echoes Of Stella",
+      "image": "./assets/images/Portfolio/gifs/eos.gif",
+      "link": "https://kenanege.itch.io/echoes-of-stella",
+      "visible": true
+    },
+    {
+      "id": 2,
+      "title": "Killwats League",
+      "image": "./assets/images/Portfolio/gifs/kw.gif",
+      "link": "https://kenanege.itch.io/killwats-league",
+      "visible": true
+    },
+    {
+      "id": 4,
+      "title": "Dark Descent",
+      "image": "./assets/images/Portfolio/gifs/dd.gif",
+      "link": "https://kenanege.itch.io/dark-descent",
+      "visible": true
+    },
+    {
+      "id": 5,
+      "title": "In A Bad Mewd",
+      "image": "./assets/images/Portfolio/gifs/mewd.gif",
+      "link": "https://kenanege.itch.io/in-a-bad-mewd-webgltest",
+      "visible": true
+    },
+    {
+      "id": 6,
+      "title": "Way Escape",
+      "image": "./assets/images/Portfolio/gifs/waye.gif",
+      "link": "https://kenanaegean.github.io/WayEscape-2D-Unity-Game-Demo/",
+      "visible": true
+    },
+    {
+      "id": 7,
+      "title": "No Need For Speed",
+      "image": "./assets/images/Portfolio/gifs/nnfs.gif",
+      "link": "https://github.com/KenanAegean/No-Need-For-Speed",
+      "visible": false
+    },
+    {
+      "id": 1,
+      "title": "Swarmbreaker: Orbit of Power",
+      "image": "./assets/images/Portfolio/gifs/sboop2.gif",
+      "link": "https://kenanege.itch.io/swarmbreaker",
+      "visible": true
+    },
+    {
+      "id": 8,
+      "title": "Riziko",
+      "image": "./assets/images/Portfolio/gifs/riziko.gif",
+      "link": "https://kenanaegean.github.io/Riziko_WebGL/",
+      "visible": true
+    }
+  ]
+}

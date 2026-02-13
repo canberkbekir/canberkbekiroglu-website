@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "company": "Orion Innovation",
+    "logo": "./assets/images/logos/orion.png",
+    "url": "https://www.orioninc.com/",
+    "positions": [
+      {
+        "title": "Software Engineer",
+        "startDate": "March 2023",
+        "endDate": "September 2024",
+        "responsibilities": [
+          "<strong>Identified and resolved critical bugs</strong> in <strong>Java-based applications</strong>, improving system stability and performance.",
+          "<strong>Conducted thorough testing and debugging</strong>, ensuring smooth functionality and minimizing downtime.",
+          "<strong>Designed and deployed Docker containers</strong>, optimizing development and production environments for seamless CI/CD workflows.",
+          "<strong>Managed and resolved Jira tasks</strong>, collaborating with cross-functional teams to meet project deadlines efficiently.",
+          "<strong>Implemented DevOps solutions</strong>, automating deployment pipelines and enhancing system reliability through CI/CD integration.",
+          "<strong>Developed an AI-based NBA match prediction app</strong> during the company hackathon using Django, Python, and machine learning to forecast player and match performance. Built an interactive web interface, integrated custom AI models, and optimized Django for efficient data handling."
+        ]
+      },
+      {
+        "title": "Software Engineer - Intern",
+        "startDate": "August 2022",
+        "endDate": "October 2022",
+        "responsibilities": [
+          "<strong>Contributed to the Traffic Test Team</strong>, analyzing performance and identifying potential bottlenecks.",
+          "<strong>Developed a web application using Java Spring Boot</strong>, enabling employees to reserve test-working environments, improving workflow efficiency.",
+          "<strong>Collaborated with senior developers</strong>, gaining hands-on experience in Agile methodologies and full-stack development."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "company": "BDH - NETAŞ",
+    "logo": "./assets/images/logos/bdh.png",
+    "url": "https://www.bdh.com.tr/",
+    "positions": [
+      {
+        "title": "Software Engineer - Intern",
+        "startDate": "August 2021",
+        "endDate": "September 2021",
+        "responsibilities": [
+          "<strong>Explored and learned the Salesforce Cloud Platform</strong>, understanding its CRM capabilities and integration with enterprise systems.",
+          "<strong>Achieved foundational knowledge of Salesforce Administration and Development</strong>, including configuring objects, fields, automation rules, and basic Apex programming.",
+          "<strong>Assisted in cloud-based application development</strong>, exploring customization, data management, and deployment within the Salesforce ecosystem.",
+          "<strong>Participated in team meetings and knowledge-sharing sessions</strong>, deepening my understanding of cloud infrastructure and CRM solutions."
+        ]
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "company": "Biltek Design and Software A.Ş.",
+    "logo": "./assets/images/logos/biltek.png",
+    "url": "https://www.biltek.com.tr/",
+    "positions": [
+      {
+        "title": "Volunteer Intern",
+        "startDate": "September 2018",
+        "endDate": "November 2019",
+        "responsibilities": [
+          "<strong>Gained insight into the internal operations of a software company</strong>, observing workflows, project management, and client interactions.",
+          "<strong>Learned and practiced web development</strong>, building responsive websites using HTML, CSS, and PHP.",
+          "<strong>Developed an authentication features for a web application</strong>, implementing sign-in, sign-out, and user session management using PHP and MySQL.",
+          "<strong>Assisted in front-end and back-end development</strong>, gaining hands-on experience in creating dynamic web pages and database interactions.",
+          "<strong>Explored software development best practices</strong>, including debugging, version control, and UI/UX principles."
+        ]
+      }
+    ]
+  }
+]

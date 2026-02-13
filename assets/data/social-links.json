@@ -1,0 +1,66 @@
+[
+  {
+    "id": 1,
+    "platform": "GitHub",
+    "icon": "logo-github",
+    "iconType": "ionicon",
+    "url": "https://github.com/KenanAegean",
+    "visible": true
+  },
+  {
+    "id": 2,
+    "platform": "LinkedIn",
+    "icon": "logo-linkedin",
+    "iconType": "ionicon",
+    "url": "https://www.linkedin.com/in/kenanege/",
+    "visible": true
+  },
+  {
+    "id": 3,
+    "platform": "Instagram",
+    "icon": "logo-instagram",
+    "iconType": "ionicon",
+    "url": "https://www.instagram.com/kenanege/",
+    "visible": true
+  },
+  {
+    "id": 4,
+    "platform": "YouTube",
+    "icon": "logo-youtube",
+    "iconType": "ionicon",
+    "url": "https://www.youtube.com/channel/UCds6Gb5gvdc6_zyXa8u5e0w",
+    "visible": true
+  },
+  {
+    "id": 5,
+    "platform": "Spotify",
+    "icon": "fa-spotify",
+    "iconType": "fontawesome",
+    "url": "https://open.spotify.com/intl-tr/artist/2CMjhwFMDeusyTCoKcTNL8?si=1_G7nyGgSj2Qxv_icfhUxA",
+    "visible": true
+  },
+  {
+    "id": 6,
+    "platform": "SoundCloud",
+    "icon": "logo-soundcloud",
+    "iconType": "ionicon",
+    "url": "https://soundcloud.com/kenan-ege",
+    "visible": true
+  },
+  {
+    "id": 7,
+    "platform": "Steam",
+    "icon": "fa-steam",
+    "iconType": "fontawesome",
+    "url": "https://steamcommunity.com/id/ZoneBee/",
+    "visible": true
+  },
+  {
+    "id": 8,
+    "platform": "Itch.io",
+    "icon": "fa-itch-io",
+    "iconType": "fontawesome",
+    "url": "https://kenanege.itch.io/",
+    "visible": true
+  }
+]

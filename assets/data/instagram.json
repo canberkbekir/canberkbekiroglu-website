@@ -1,0 +1,31 @@
+{
+  "username": "kenanege",
+  "profileUrl": "https://instagram.com/kenanege",
+  "profileImage": "assets/images/insta/profile.jpg",
+  "posts": [
+    {
+      "id": 1,
+      "image": "assets/images/insta/p1.png",
+      "alt": "Post 1",
+      "link": "https://instagram.com/kenanege"
+    },
+    {
+      "id": 2,
+      "image": "assets/images/insta/p2.png",
+      "alt": "Post 2",
+      "link": "https://instagram.com/kenanege"
+    },
+    {
+      "id": 3,
+      "image": "assets/images/insta/p3.png",
+      "alt": "Post 3",
+      "link": "https://instagram.com/kenanege"
+    },
+    {
+      "id": 4,
+      "image": "assets/images/insta/p4.png",
+      "alt": "Post 4",
+      "link": "https://instagram.com/kenanege"
+    }
+  ]
+}

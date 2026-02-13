@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "institution": "Futuregames Academy",
+    "logo": "./assets/images/logos/futuregames.png",
+    "url": "https://futuregames.se/",
+    "degrees": [
+      {
+        "title": "Game Programming",
+        "startDate": "2024 September",
+        "endDate": "Present",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "institution": "University Of Lodz",
+    "logo": "./assets/images/logos/lodz.png",
+    "url": "https://www.uni.lodz.pl/en/",
+    "degrees": [
+      {
+        "title": "Faculty of Mathematics and Computer Science (Erasmus)",
+        "startDate": "2022 February",
+        "endDate": "2022 July",
+        "description": ""
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "institution": "Doğuş University",
+    "logo": "./assets/images/logos/dogus.png",
+    "url": "https://www.dogus.edu.tr/en/",
+    "degrees": [
+      {
+        "title": "Computer Engineering - Major",
+        "startDate": "2018 September",
+        "endDate": "2023 July",
+        "description": ""
+      },
+      {
+        "title": "Software Engineering - Minor",
+        "startDate": "2019 September",
+        "endDate": "2023 July",
+        "description": ""
+      }
+    ]
+  }
+]

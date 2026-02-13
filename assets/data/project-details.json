@@ -1,0 +1,89 @@
+{
+  "gamerlog": {
+    "id": "gamerlog",
+    "title": "GamerLog – Graduation Project",
+    "backLink": "../index.html",
+    "logo": "../assets/images/Gamerlog/logo.png",
+    "logoAlt": "GamerLog logo",
+    "sections": [
+      {
+        "type": "text",
+        "heading": "About",
+        "content": "<p><strong>GamerLog</strong> is a Django-based platform where players build a visual game library, rate & review titles, and get <strong>personalized recommendations</strong> powered by the Surprise library. From your profile, the <em>Toss Me a Game</em> button suggests smart picks based on what you've played and liked.</p>"
+      },
+      {
+        "type": "list",
+        "items": [
+          "<strong>Personal collections:</strong> curate your library with covers, ratings, and notes.",
+          "<strong>Smart discoverability:</strong> recommendations from collaborative filtering on your activity.",
+          "<strong>Social-ready:</strong> future-friendly for sharing collections and exploring others' shelves."
+        ]
+      },
+      {
+        "type": "text",
+        "content": "<p style=\"margin-top:1rem;\"><strong>Tech Stack</strong><br>• Back-end: Django<br>• Front-end: HTML/CSS (Vanilla), Bootstrap 5<br>• Database: SQLite 3</p>"
+      },
+      {
+        "type": "screenshots",
+        "heading": "Screenshots",
+        "images": [
+          {
+            "src": "../assets/images/Gamerlog/1.webp",
+            "alt": "Home feed with recent reviews and ratings"
+          },
+          {
+            "src": "../assets/images/Gamerlog/2.webp",
+            "alt": "Game detail page with rating and review actions"
+          },
+          {
+            "src": "../assets/images/Gamerlog/3.webp",
+            "alt": "User profile showing visual game collection"
+          },
+          {
+            "src": "../assets/images/Gamerlog/4.webp",
+            "alt": "Add-to-collection and tagging workflow"
+          },
+          {
+            "src": "../assets/images/Gamerlog/5.webp",
+            "alt": "Ratings and review editor UI"
+          },
+          {
+            "src": "../assets/images/Gamerlog/6.webp",
+            "alt": "Recommendation panel generated from user history"
+          },
+          {
+            "src": "../assets/images/Gamerlog/7.webp",
+            "alt": "Browse and filter games in the library"
+          },
+          {
+            "src": "../assets/images/Gamerlog/8.webp",
+            "alt": "Detail overlay with metadata and actions"
+          }
+        ]
+      }
+    ]
+  },
+  "brickable-bridge": {
+    "id": "brickable-bridge",
+    "title": "Brickable Bridge – Game Jam",
+    "backLink": "../index.html",
+    "logo": "../assets/images/BrickableBridge/bb.png",
+    "logoAlt": "Brickable Bridge Game",
+    "sections": [
+      {
+        "type": "text",
+        "heading": "Description",
+        "content": "<p>Brickable Bridge is a hyper-casual reflex-based stacking game made with Unity.<br><br>Your goal is placing the road parts with good timing. Unless cars will fall and you will lose. You need to build the bridge while cars are reaching the end.<br><br>Simple and fun!<br>(Made in 48 hours.)</p>"
+      },
+      {
+        "type": "screenshots",
+        "images": [
+          {
+            "src": "../assets/images/BrickableBridge/bb_ss.png",
+            "alt": "Brickable Bridge Screenshot"
+          }
+        ]
+      }
+    ]
+  }
+}
