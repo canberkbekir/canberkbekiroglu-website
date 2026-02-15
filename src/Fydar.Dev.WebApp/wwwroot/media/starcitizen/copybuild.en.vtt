@@ -1,0 +1,26 @@
+WEBVTT
+
+00:00:00.360 --> 00:00:02.590
+We then also have what we call general tools,
+
+00:00:02.600 --> 00:00:07.750
+which are more for general business process and managing workflows,
+
+00:00:07.760 --> 00:00:11.110
+and they can be everything from automated testing through to grabbing builds,
+
+00:00:11.120 --> 00:00:14.230
+reporting crashes. So for some more specific examples,
+
+00:00:14.240 --> 00:00:16.350
+to tools that you may be familiar with because
+
+00:00:16.360 --> 00:00:18.630
+they've been seen on around the verse previously,
+
+00:00:18.640 --> 00:00:22.350
+is Copy Build, which is used by pretty much every developer every
+
+00:00:22.360 --> 00:00:26.990
+day to pull builds from the build system that is housed in Austin.
+

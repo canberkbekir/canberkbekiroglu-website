@@ -1,0 +1,52 @@
+@inherits LayoutComponentBase
+
+@inject Noncer noncer;
+
+<ContentSecurityPolicy_Allow Directive="default-src" Sources="'self'" />
+<ContentSecurityPolicy_Allow Directive="script-src" Sources="'self' 'unsafe-inline' 'wasm-unsafe-eval'" />
+<ContentSecurityPolicy_Allow Directive="style-src" Sources="'self' 'unsafe-inline'" />
+<ContentSecurityPolicy_Allow Directive="img-src" Sources="'self' data:" />
+<ContentSecurityPolicy_Allow Directive="media-src" Sources="'self' data: blob:" />
+
+<SectionContent SectionName="layoutheadcontent">
+    <!--<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="@Assets["favicon.svg"]" />-->
+    <meta name="CCBot" content="nofollow">
+    <meta name="robots" content="noai, noimageai">
+    <meta name="tdm-reservation" content="1">
+    <meta name="darkreader-lock">
+    <base href="/" />
+</SectionContent>
+
+<SectionContent SectionName="layoutbodystyle">
+    <style>
+        body {
+            padding: 0;
+            border: 0;
+            margin: 0;
+        }
+    </style>
+</SectionContent>
+
+@Body
+
+<script nonce="@noncer.Nonce">
+    if (/iPhone|iPad|iPod|Android/i.test(navigator.userAgent)) {
+        var meta = document.createElement('meta');
+        meta.name = 'viewport';
+        meta.content = 'width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes';
+        document.getElementsByTagName('head')[0].appendChild(meta);
+    }
+</script>
+
+<style>
+    body {
+        padding: 0;
+        margin: 0
+    }
+
+    .embed {
+        width: 100vw;
+        height: 100vh;
+    }
+</style>

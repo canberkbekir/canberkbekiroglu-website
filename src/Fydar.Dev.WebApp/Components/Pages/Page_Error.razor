@@ -1,0 +1,27 @@
+@using System.Diagnostics
+@using System.Net
+
+@layout DefaultLayout
+@page "/error"
+@page "/error/{errorCode:int}"
+
+<PageTitle>Error - Fydar</PageTitle>
+
+<section class="container">
+
+    <div class="page">
+
+        <h2>Uh oh!</h2>
+
+        <p>It appears that there has been an error! Please try again soon.</p>
+
+        <p>Error Code: @ErrorCode (@((HttpStatusCode)(ErrorCode ?? 500)))</p>
+
+    </div>
+
+</section>
+
+@code {
+    [Parameter]
+    public int? ErrorCode { get; set; }
+}

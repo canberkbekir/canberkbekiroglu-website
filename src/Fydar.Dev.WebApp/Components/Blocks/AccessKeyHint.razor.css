@@ -1,0 +1,40 @@
+.access-hint {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    padding: 10px;
+    min-width: 16px;
+    margin-top: 8px;
+    text-align: center;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transform: translateX(-50%) translateY(-24px) scaleX(2) scaleY(0.1);
+    background: #111111c0;
+    border-radius: 8pt;
+    border: 1px solid #ffffff30;
+    transition: opacity ease-in-out 0.15s, margin-top ease-in-out 0.15s, transform ease-in-out 0.15s, filter ease-in-out 0.15s;
+    backdrop-filter: blur(2px);
+    filter: blur(5px);
+    opacity: 0;
+    pointer-events: none;
+    user-select: none;
+    color: #ffffffdd;
+}
+    .access-hint.show {
+        filter: none;
+        opacity: 1;
+        transform: translateX(-50%) scaleX(1) scaleY(1);
+    }
+
+        .access-hint.show.no-transition {
+            transition: none;
+        }
+
+    .access-hint ::deep svg.external-link-icon {
+        width: 8pt;
+        height: 8pt;
+        transform: translateY(-3px);
+        margin: 0;
+        margin-left: 2px;
+        opacity: 0.625;
+    }

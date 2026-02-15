@@ -1,0 +1,153 @@
+@layout DefaultLayout
+@page "/portfolio/voxelmultiplayer"
+@{
+    var openGraphModel = new OpenGraphModel()
+    {
+        Title = "Voxel Multiplayer - Fydar",
+        Description = "Fully bespoke voxel rendering system to create a 'Cube World' style game with a multiplayer component.",
+        CanonicalUrl = "https://fydar.dev/portfolio/voxelmultiplayer",
+        Properties = [
+            new OpenGraphModelImage()
+            {
+                Url = "https://fydar.dev/media/voxelmultiplayer/social.webp",
+                Alt = "Promotional material for the game 'Voxel Multiplayer'."
+            }
+        ]
+    };
+    var linkData = new LinkData()
+    {
+        new LinkDataBreadcrumbList()
+        {
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Portfolio",
+                Item = "https://fydar.dev/portfolio"
+            },
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Voxel Multiplayer",
+                Item = "https://fydar.dev/portfolio/voxelmultiplayer"
+            }
+        }
+    };
+}
+
+<HeadContent>
+    <OpenGraphComponent Model="@openGraphModel" />
+    <LinkDataComponent Model="@linkData" />
+</HeadContent>
+
+<section class="fullscreen" data-nosnippet>
+    <div class="parallax-frame parallax-focalanchortop" style="--animation-time: 0.5;">
+
+        <picture class="parallax-layer" style="--parallax-multiplier: 0.5">
+            <img decoding="async"src="@Assets["media/voxelmultiplayer/background.webp"]" />
+        </picture>
+
+    </div>
+
+    <div class="fullscreen-footer">
+        <div class="fullscreen-footer-container container container-wide">
+            <picture>
+                <img decoding="async"class="titlecard" src="@Assets["media/voxelmultiplayer/titlecard.svg"]" alt="Title card for the game 'Voxel Multiplayer'." />
+            </picture>
+
+            <div class="titlerow">
+                <div class="flexible-space"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="cascade-container">
+    <div class="cascade" style="background: linear-gradient(to right, #5d6a3c21 0%, #5d6a3c87 75%, #5d6a3c2b 100%), url(media/noise.svg);">
+    </div>
+</div>
+
+<section class="container container-wide" data-nosnippet>
+    <h1>Voxel Multiplayer</h1>
+</section>
+
+<aside class="project-summary">
+    <section>
+        <img decoding="async"class="project-featuredimage" src="@Assets["media/voxelmultiplayer/social.webp"]" alt="Promotional material for the game 'Voxel Multiplayer'." />
+
+        <PillCloud>
+            <Pill_Northbrook />
+            <Pill_GameJam />
+            <Pill_Multiplayer />
+            <Pill_Unity />
+            <Pill_CSharp />
+        </PillCloud>
+
+        <p>@openGraphModel.Description.Default</p>
+
+        <menu class="externallinks" aria-label="Project External links">
+            <li class="palette-youtube"><a href="https://youtu.be/BbosMaHxAHo" target="_blank"><SvgSprite Link="/icons.svg?v=1#icon-youtube" Alt="YouTube" /></a></li>
+        </menu>
+
+        <ShareLink Url="@openGraphModel.CanonicalUrl.Html" />
+    </section>
+</aside>
+
+<section class="container">
+    <EmbedYouTube Url="https://www.youtube-nocookie.com/embed/BbosMaHxAHo?si=HRRzPq68GrrLXLH5" StartTime="45" />
+</section>
+
+<HeadingScope>
+    <aside>
+        <section style="position: sticky; top: 64px;">
+            <div style="height: 5rem"></div>
+            <TableOfContents />
+        </section>
+
+    </aside>
+
+    <section class="container">
+
+        <Heading Level="2" Identifier="voxel-terrain-generation">
+            <Prefix>Implementing</Prefix>
+            <Text>Voxel Terrain Generation</Text>
+            <Content>
+
+                <figure class="figure-image">
+                    <img decoding="async"loading="lazy" src="@Assets["media/voxelmultiplayer/voxel-terrain-1.webp"]" alt="A mountain forest." />
+                    <figcaption>A mountain forest.</figcaption>
+                </figure>
+
+                <figure class="figure-image">
+                    <img decoding="async"loading="lazy" src="@Assets["media/voxelmultiplayer/screenshot-3.webp"]" alt="A concealed grove in a forest." />
+                    <figcaption>A concealed grove in a forest with ritual stones.</figcaption>
+                </figure>
+
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="peer-to-peer-multiplayer">
+            <Prefix>Implementing</Prefix>
+            <Text>Peer-to-Peer Multiplayer</Text>
+            <Content>
+
+                <Callout Type="construction">
+                    <Icon><SvgSprite Link="/icons.svg?v=1#fluent-emoji-high-contrast--construction" Alt="Check" /></Icon>
+                    <ChildContent>This section of my website is currently <b>under construction</b>.</ChildContent>
+                </Callout>
+
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="character-controller">
+            <Prefix>Implementing</Prefix>
+            <Text>Third Person Character Controller</Text>
+            <Content>
+
+                <Callout Type="construction">
+                    <Icon><SvgSprite Link="/icons.svg?v=1#fluent-emoji-high-contrast--construction" Alt="Check" /></Icon>
+                    <ChildContent>This section of my website is currently <b>under construction</b>.</ChildContent>
+                </Callout>
+
+            </Content>
+        </Heading>
+
+    </section>
+</HeadingScope>

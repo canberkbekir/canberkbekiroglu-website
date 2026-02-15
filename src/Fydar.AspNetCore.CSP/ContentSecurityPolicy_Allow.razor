@@ -1,0 +1,31 @@
+@using System.Text
+@using Fydar.AspNetCore.CSP;
+@using Fydar.AspNetCore.CSP.Internal
+@using Microsoft.AspNetCore.Http;
+
+@inject CspRendering cspRendering;
+@inject IHttpContextAccessor HttpContextAccessor
+
+@code {
+    [Parameter, EditorRequired]
+    public string Directive { get; set; } = "";
+
+    [Parameter, EditorRequired]
+    public string Sources { get; set; } = "";
+
+    protected override void OnParametersSet()
+    {
+        var sources = Sources.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+
+        if (!cspRendering.PolicyMap.TryGetValue(Directive, out var policy))
+        {
+            policy = new SortedSet<string>();
+            cspRendering.PolicyMap[Directive] = policy;
+        }
+
+        foreach (var source in sources)
+        {
+            policy.Add(source);
+        }
+    }
+}

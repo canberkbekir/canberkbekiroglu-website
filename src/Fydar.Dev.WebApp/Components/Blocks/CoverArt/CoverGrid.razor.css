@@ -1,0 +1,15 @@
+/* Cover Grids */
+.cover-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 12px;
+    margin: 12px 0;
+    padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .cover-grid,
+    .cover-grid.cover-grid-sm {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}

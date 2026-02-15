@@ -1,0 +1,43 @@
+@using Microsoft.AspNetCore.WebUtilities
+
+<figure class="figure-audio">
+    <div class="figure-audio-player">
+        <div class="figure-audio-player-albumcover">
+            @AlbumCover
+        </div>
+        <div class="figure-audio-player-header">
+            @TrackName
+        </div>
+        <div class="figure-audio-player-description">
+            @Description
+        </div>
+        <audio controls volume="@DefaultVolume">
+            @Sources
+        </audio>
+    </div>
+
+    @if (Caption != null)
+    {
+        <figcaption>@Caption</figcaption>
+    }
+</figure>
+
+@code {
+    [Parameter, EditorRequired]
+    public RenderFragment TrackName { get; set; }
+
+    [Parameter, EditorRequired]
+    public RenderFragment Sources { get; set; }
+
+    [Parameter]
+    public double DefaultVolume { get; set; } = 1.0;
+
+    [Parameter]
+    public RenderFragment? AlbumCover { get; set; }
+
+    [Parameter]
+    public RenderFragment? Description { get; set; }
+
+    [Parameter]
+    public RenderFragment? Caption { get; set; }
+}

@@ -1,0 +1,9 @@
+/* Generic App Icon Grids */
+.appicon-grid {
+    margin-top: 2rem;
+    margin-bottom: 3rem;
+    display: grid;
+    justify-items: center;
+    gap: 24px;
+    grid-template-columns: repeat(auto-fit, minmax(88px, 1fr));
+}

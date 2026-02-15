@@ -1,0 +1,10 @@
+
+span.ipa {
+}
+
+    span.ipa ::deep span.titled {
+        border-bottom: 1px dotted;
+    }
+
+        span.ipa ::deep span.titled span {
+        }

@@ -1,0 +1,75 @@
+@layout GameLayout
+@page "/play/astralelites"
+
+@inject Noncer noncer;
+
+@{
+    var openGraphModel = new OpenGraphModel()
+    {
+        Title = "Play Astral Elites - Fydar",
+        Description = "The physics-based and fast-paced asteroids clone for the modern era.",
+        CanonicalUrl = "https://fydar.dev/play/astralelites",
+        Properties = [
+            new OpenGraphModelImage()
+            {
+                Url = "https://fydar.dev/media/astralelites/social.webp",
+                Alt = "Promotional material for the game 'Astral Elites'."
+            }
+        ]
+    };
+    var linkData = new LinkData()
+    {
+        new LinkDataBreadcrumbList()
+        {
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Play",
+                Item = "https://fydar.dev/play/"
+            },
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Astral Elites",
+                Item = "https://fydar.dev/play/astralelites"
+            }
+        }
+    };
+}
+
+<HeadContent>
+    <OpenGraphComponent Model="@openGraphModel" />
+    <LinkDataComponent Model="@linkData" />
+    <meta name="theme-color" content="#161618">
+    <link rel="shortcut icon" href="@Assets["/play/astralelites/favicon.ico"]">
+    <link rel="manifest" href="@Assets["/play/astralelites/manifest.webmanifest"]">
+    <link rel="preload" href="@Assets["/play/astralelites/build/astralelites.loader.js"]" as="script" fetchpriority="high" />
+</HeadContent>
+
+@{
+    var embedUnityConfig = new EmbedUnityConfig()
+    {
+        ProductName = "Astral Elites",
+        ProductVersion = new Version(0, 1, 1, 1),
+        CompanyName = "Fydar",
+        LoaderUrl = Assets["/play/astralelites/build/astralelites.loader.js"],
+        FrameworkUrl = Assets["/play/astralelites/build/astralelites.framework.js.br"],
+        CodeUrl = Assets["/play/astralelites/build/astralelites.wasm.br"],
+        DataUrl = Assets["/play/astralelites/build/astralelites.data.br"],
+        StreamingAssetsUrl = "/play/astralelites/StreamingAssets",
+        Arguments = [],
+    };
+}
+
+<EmbedUnity Config="embedUnityConfig">
+    <Placeholder>
+        <img decoding="async" src="@Assets["play/astralelites/favicon.ico"]" alt="The logo for 'Astral Elites'." style="width: 200px; max-width: 90%; margin-bottom: 32px;" />
+    </Placeholder>
+</EmbedUnity>
+
+<script nonce="@noncer.Nonce">
+    var serviceWorkerUrl = "@Assets["play/astralelites/ServiceWorker.js"]";
+    window.addEventListener("load", function () {
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register(serviceWorkerUrl);
+        }
+    });
+</script>

@@ -1,0 +1,13 @@
+@if (Year >= 2000)
+{
+    <div class="timeline-year">@($"'{Year - 2000:00}")</div>
+}
+else
+{
+    <div class="timeline-year">@Year</div>
+}
+
+@code {
+    [Parameter, EditorRequired]
+    public int? Year { get; set; }
+}

@@ -1,0 +1,229 @@
+@layout DefaultLayout
+@page "/portfolio/behaviour"
+@{
+    var openGraphModel = new OpenGraphModel()
+    {
+        Title = "Behaviour - Fydar",
+        Description = "A complete node-based behaviour system.",
+        CanonicalUrl = "https://fydar.dev/portfolio/behaviour",
+        Properties = [
+            new OpenGraphModelImage()
+            {
+                Url = "https://fydar.dev/media/header.webp",
+                Alt = "A portrait of Fydar in an anime art style."
+            }
+        ]
+    };
+    var linkData = new LinkData()
+    {
+        new LinkDataBreadcrumbList()
+        {
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Portfolio",
+                Item = "https://fydar.dev/portfolio"
+            },
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Behaviour",
+                Item = "https://fydar.dev/portfolio/behaviour"
+            }
+        }
+    };
+}
+
+<HeadContent>
+    <OpenGraphComponent Model="@openGraphModel" />
+    <LinkDataComponent Model="@linkData" />
+</HeadContent>
+
+<section class="container container-wide" data-nosnippet>
+    <h1>Behaviour</h1>
+</section>
+
+<aside class="project-summary">
+    <section>
+        <PillCloud>
+            <Pill_CSharp />
+        </PillCloud>
+
+        <p>@openGraphModel.Description.Default</p>
+
+        <menu class="externallinks" aria-label="Project External links">
+            <li><a href="https://github.com/fydar/RPGCore" target="_blank"><SvgSprite Link="/icons.svg?v=1#icon-github" Alt="GitHub" /></a></li>
+        </menu>
+
+        <ShareLink Url="@openGraphModel.CanonicalUrl.Html" />
+    </section>
+</aside>
+
+<HeadingScope>
+    <aside>
+        <section style="position: sticky; top: 64px;">
+            <div style="height: 5rem"></div>
+            <TableOfContents />
+        </section>
+
+    </aside>
+
+    <section class="container">
+
+        <Heading Level="2" Identifier="nodes">
+            <Prefix>Designing the</Prefix>
+            <Text>Nodes</Text>
+            <Content>
+
+                <p>I've been wrestling with the design of the node API for a long time, with every iteration reducing it's complexity and taking advantage of the latest C# features. The most recent C# feature that I'm yet to take advantage of is <b>Source Generators</b>, which opens up the field of APIs massively.</p>
+
+                <p>With that said, here is the latest design of the Node API.</p>
+
+                <img decoding="async"class="media-wide" src="@Assets["media/behaviour/behaviour-nodeapi.svg"]" alt="The API for defining a Node." />
+
+                <Callout Type="construction">
+                    <Icon><SvgSprite Link="/icons.svg?v=1#fluent-emoji-high-contrast--construction" Alt="Check" /></Icon>
+                    <ChildContent>This section of my website is currently <b>under construction</b>.</ChildContent>
+                </Callout>
+
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="graphs">
+            <Prefix>Assembling some</Prefix>
+            <Text>Graphs</Text>
+            <Content>
+
+                <p>Now that we have some nodes, we can start assembling them into graphs. Here is the above Add node in a graph.</p>
+
+                <NodeGraph TargetSize="640">
+
+                    <Connection StartX="-8" StartY="-5" EndX="-5" EndY="-2" />
+                    <Connection StartX="-8" StartY="0" EndX="-5" EndY="-1" />
+
+                    <Connection StartX="3" StartY="-3" EndX="6" EndY="1" />
+                    <Connection StartX="3" StartY="5" EndX="6" EndY="2" />
+                    <Node X="-14" Y="-7" MinWidth="6">
+                        <Name>Player Level</Name>
+                        <Content>
+                            <div class="graph-node-section-sockets">
+
+                                <div class="graph-node-outputs">
+                                    <div class="graph-node-output connected" style="--row: 1">
+                                        <div class="graph-node-output-socket">I</div>
+                                        <div class="graph-node-output-label">Level</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </Content>
+                    </Node>
+                    <Node X="-14" Y="-2" MinWidth="6">
+                        <Name>Integer</Name>
+                        <Content>
+                            <div class="graph-node-section-sockets">
+
+                                <div class="graph-node-outputs">
+                                    <div class="graph-node-output connected" style="--row: 1">
+                                        <div class="graph-node-output-socket">I</div>
+                                        <div class="graph-node-output-label">Output</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </Content>
+                    </Node>
+                    <Node X="-5" Y="3" MinWidth="8">
+                        <Name>Roll</Name>
+                        <Content>
+                            <div class="graph-node-section-sockets">
+
+                                <div class="graph-node-inputs">
+
+                                    <div class="graph-node-input" style="--row: 1">
+                                        <div class="graph-node-input-socket">I</div>
+                                        <div class="graph-node-input-label">Min</div>
+                                    </div>
+                                    <div class="graph-node-input" style="--row: 2">
+                                        <div class="graph-node-input-socket">I</div>
+                                        <div class="graph-node-input-label">Max</div>
+                                    </div>
+
+                                </div>
+
+                                <div class="graph-node-outputs">
+                                    <div class="graph-node-output connected" style="--row: 1">
+                                        <div class="graph-node-output-socket">I</div>
+                                        <div class="graph-node-output-label">Value</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </Content>
+                    </Node>
+                    <Node X="-3" Y="-5" MinWidth="6">
+                        <Name>Multiply</Name>
+                        <Content>
+                            <div class="graph-node-section-sockets">
+
+                                <div class="graph-node-inputs">
+
+                                    <div class="graph-node-input connected" style="--row: 1">
+                                        <div class="graph-node-input-socket">I</div>
+                                        <div class="graph-node-input-label">A</div>
+                                    </div>
+                                    <div class="graph-node-input connected" style="--row: 2">
+                                        <div class="graph-node-input-socket">I</div>
+                                        <div class="graph-node-input-label">B</div>
+                                    </div>
+
+                                </div>
+
+                                <div class="graph-node-outputs">
+                                    <div class="graph-node-output connected" style="--row: 1">
+                                        <div class="graph-node-output-socket">I</div>
+                                        <div class="graph-node-output-label">Output</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </Content>
+                    </Node>
+                    <Node X="8" Y="-2" MinWidth="6">
+                        <Name>Add</Name>
+                        <Content>
+                            <div class="graph-node-section-sockets">
+
+                                <div class="graph-node-inputs">
+
+                                    <div class="graph-node-input connected" style="--row: 1">
+                                        <div class="graph-node-input-socket">I</div>
+                                        <div class="graph-node-input-label">A</div>
+                                    </div>
+                                    <div class="graph-node-input connected" style="--row: 2">
+                                        <div class="graph-node-input-socket">I</div>
+                                        <div class="graph-node-input-label">B</div>
+                                    </div>
+
+                                </div>
+
+                                <div class="graph-node-outputs">
+                                    <div class="graph-node-output" style="--row: 1">
+                                        <div class="graph-node-output-socket">I</div>
+                                        <div class="graph-node-output-label">Output</div>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </Content>
+                    </Node>
+                </NodeGraph>
+
+                <Callout Type="construction">
+                    <Icon><SvgSprite Link="/icons.svg?v=1#fluent-emoji-high-contrast--construction" Alt="Check" /></Icon>
+                    <ChildContent>This section of my website is currently <b>under construction</b>.</ChildContent>
+                </Callout>
+
+            </Content>
+        </Heading>
+
+    </section>
+</HeadingScope>

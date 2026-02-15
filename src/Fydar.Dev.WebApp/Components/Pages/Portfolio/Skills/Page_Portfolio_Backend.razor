@@ -1,0 +1,124 @@
+@layout DefaultLayout
+@page "/portfolio/backend"
+@{
+    var openGraphModel = new OpenGraphModel()
+    {
+        Title = "Backend Engineering - Fydar",
+        Description = "A collection of backend I've developed.",
+        CanonicalUrl = "https://fydar.dev/portfolio/backend",
+        Properties = [
+            new OpenGraphModelImage()
+            {
+                Url = "https://fydar.dev/media/header.webp",
+                Alt = "A portrait of Fydar in an anime art style."
+            }
+        ]
+    };
+    var linkData = new LinkData()
+    {
+        new LinkDataBreadcrumbList()
+        {
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Portfolio",
+                Item = "https://fydar.dev/portfolio"
+            },
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Backend Engineering",
+                Item = "https://fydar.dev/portfolio/backend"
+            }
+        }
+    };
+}
+
+<HeadContent>
+    <OpenGraphComponent Model="@openGraphModel" />
+    <LinkDataComponent Model="@linkData" />
+</HeadContent>
+
+<section class="container container-wide" data-nosnippet>
+    <h1>Backend Engineering</h1>
+</section>
+
+<HeadingScope>
+    <aside>
+        <section style="position: sticky; top: 64px;">
+            <div style="height: 5rem"></div>
+            <TableOfContents />
+        </section>
+
+    </aside>
+
+    <section class="container">
+
+        <Heading Level="2" Identifier="professional">
+            <Text>Professional</Text>
+            <Content>
+                <CoverGrid>
+
+                    <CoverDate Date="2022">
+                        <Cover_StarCitizen />
+                    </CoverDate>
+
+                    <CoverDate>
+                        <Cover_Squadron42 />
+                    </CoverDate>
+
+                    <CoverDate Date="2020">
+                        <Cover_LegoStarWarsBattles />
+                    </CoverDate>
+
+                </CoverGrid>
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="Hobbyist" Palette="backend">
+            <Text>Hobbyist</Text>
+            <Content>
+
+                <CardGrid Size="md">
+                    <Card href="/portfolio/mywebsite">
+                        <HeaderText>My Website</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-fydar" />
+                                    <div class="column">
+                                        <h3 class="card-header">My Website</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <Pill_AspNetCore />
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">This portfolio website made using <b>ASP.NET Core</b> and hosted in <b>AWS</b>.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/pewpew">
+                        <HeaderText>Pew Pew</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-network-right-solid" />
+                                    <div class="column">
+                                        <h3 class="card-header">Pew Pew</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <Pill_AspNetCore />
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">A 20v20 .io style browser game made in 48 hours using <b>ASP.NET Core</b> and hosted in <b>AWS</b>.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+            </Content>
+        </Heading>
+
+    </section>
+</HeadingScope>

@@ -1,0 +1,22 @@
+<a @attributes="AdditionalAttributes" class="cover">
+
+    <div class="cover-background">
+        @Background
+
+        <div class="cover-overlay">
+            @Overlay
+        </div>
+    </div>
+
+</a>
+
+@code {
+    [Parameter]
+    public RenderFragment? Background { get; set; }
+
+    [Parameter]
+    public RenderFragment? Overlay { get; set; }
+
+    [Parameter(CaptureUnmatchedValues = true)]
+    public IDictionary<string, object>? AdditionalAttributes { get; set; }
+}

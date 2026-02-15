@@ -1,0 +1,75 @@
+@layout GameLayout
+@page "/play/airseabattle"
+
+@inject Noncer noncer;
+
+@{
+    var openGraphModel = new OpenGraphModel()
+    {
+        Title = "Play Air-Sea Battle - Fydar",
+        Description = "The Game Boy demake of the Nintendo DS Pokémon Diamond and Pearl underground mining minigame.",
+        CanonicalUrl = "https://fydar.dev/play/airseabattle",
+        Properties = [
+            new OpenGraphModelImage()
+            {
+                Url = "https://fydar.dev/media/airseabattle/social.webp",
+                Alt = "Promotional material for the game 'Air-Sea Battle'."
+            }
+        ]
+    };
+    var linkData = new LinkData()
+    {
+        new LinkDataBreadcrumbList()
+        {
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Play",
+                Item = "https://fydar.dev/play/"
+            },
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Air-Sea Battle",
+                Item = "https://fydar.dev/play/airseabattle"
+            }
+        }
+    };
+}
+
+<HeadContent>
+    <OpenGraphComponent Model="@openGraphModel" />
+    <LinkDataComponent Model="@linkData" />
+    <meta name="theme-color" content="#161618">
+    <link rel="shortcut icon" href="@Assets["/play/airseabattle/favicon.ico"]">
+    <link rel="manifest" href="@Assets["/play/airseabattle/manifest.webmanifest"]">
+    <link rel="preload" href="@Assets["/play/airseabattle/build/airseabattle.loader.js"]" as="script" fetchpriority="high" />
+</HeadContent>
+
+@{
+    var embedUnityConfig = new EmbedUnityConfig()
+    {
+        ProductName = "Air-Sea Battle",
+        ProductVersion = new Version(0, 1, 0),
+        CompanyName = "Fydar",
+        LoaderUrl = Assets["/play/airseabattle/build/airseabattle.loader.js"],
+        FrameworkUrl = Assets["/play/airseabattle/build/airseabattle.framework.js.br"],
+        CodeUrl = Assets["/play/airseabattle/build/airseabattle.wasm.br"],
+        DataUrl = Assets["/play/airseabattle/build/airseabattle.data.br"],
+        StreamingAssetsUrl = "/play/airseabattle/StreamingAssets",
+        Arguments = [],
+    };
+}
+
+<EmbedUnity Config="embedUnityConfig">
+    <Placeholder>
+        <img decoding="async" src="@Assets["play/airseabattle/favicon.ico"]" alt="The logo for 'Air-Sea Battle'." style="width: 200px; max-width: 90%; margin-bottom: 32px;" />
+    </Placeholder>
+</EmbedUnity>
+
+<script nonce="@noncer.Nonce">
+    var serviceWorkerUrl = "@Assets["play/airseabattle/ServiceWorker.js"]";
+    window.addEventListener("load", function () {
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register(serviceWorkerUrl);
+        }
+    });
+</script>

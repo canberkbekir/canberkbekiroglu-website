@@ -1,0 +1,10 @@
+/* Share Links */
+.row.sharelink {
+    margin-top: 0.5em;
+    font-size: 1.5em;
+    gap: 8px;
+}
+
+    .row.sharelink .sharelink-input {
+        flex-grow: 1;
+    }

@@ -1,0 +1,56 @@
+/* Table of Contents */
+ol.toc {
+    padding: 0;
+}
+
+    ol.toc li {
+        list-style: none;
+        text-wrap: nowrap;
+        font-size: 1.0625em;
+        font-weight: 400;
+        letter-spacing: 0.25px;
+    }
+
+        ol.toc li a {
+            display: inline-block;
+            align-content: center;
+            text-decoration: none;
+            height: 3em;
+            width: 100%;
+            color: #808080;
+            transition: color 0.25s ease-out;
+        }
+
+            ol.toc li a.active {
+                color: currentColor;
+            }
+
+    ol:has(:hover),
+    ol:has(:focus-visible) {
+        color: #666;
+    }
+
+    ol.toc li a:focus-visible,
+    ol.toc li a:hover {
+        color: #d8d8d8;
+    }
+
+    ol.toc li a:before {
+        content: "";
+        display: inline-block;
+        width: 1em;
+        margin-right: 0.75em;
+        height: 2px;
+        vertical-align: middle;
+        background-color: currentColor;
+        transition: width 0.25s ease-out;
+    }
+
+    ol.toc li a:hover:before,
+    ol.toc li a:focus-visible:before {
+        width: 3em;
+    }
+
+    ol.toc li a.active:before {
+        width: 3em;
+    }

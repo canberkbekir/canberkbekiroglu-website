@@ -1,0 +1,32 @@
+.cover-date-label {
+    font-size: 1.125em;
+    font-weight: 500;
+    width: 100%;
+    height: 2.25em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 8px;
+    box-sizing: border-box;
+    position: relative;
+    color: #8d8d8d;
+}
+
+    .cover-date-label::before {
+        content: '';
+        position: absolute;
+        background-color: #ffffff25;
+        bottom: 0;
+        left: 0;
+        right: -12px;
+        height: 3px;
+    }
+
+    .cover-date-label:not(:empty)::after {
+        content: '';
+        position: absolute;
+        background-color: #ffffff25;
+        bottom: 3px;
+        left: 28px;
+        width: 3px;
+        height: 5px;
+    }

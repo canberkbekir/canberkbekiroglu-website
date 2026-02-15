@@ -1,0 +1,174 @@
+@layout DefaultLayout
+@page "/portfolio/phasmophobia"
+@{
+    var openGraphModel = new OpenGraphModel()
+    {
+        Title = "Phasmophobia - Fydar",
+        Description = "A 4 player online co-op psychological horror. Paranormal activity is on the rise and it’s up to you and your team to use all the ghost-hunting equipment at your disposal in order to gather as much evidence as you can.",
+        CanonicalUrl = "https://fydar.dev/portfolio/phasmophobia",
+        Properties = [
+            new OpenGraphModelImage()
+            {
+                Url = "https://fydar.dev/media/phasmophobia/social.webp",
+                Alt = "Promotional material for the game 'Phasmophobia'."
+            }
+        ]
+    };
+    var linkData = new LinkData()
+    {
+        new LinkDataBreadcrumbList()
+        {
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Portfolio",
+                Item = "https://fydar.dev/portfolio"
+            },
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Phasmophobia",
+                Item = "https://fydar.dev/portfolio/phasmophobia"
+            }
+        }
+    };
+}
+
+<HeadContent>
+    <OpenGraphComponent Model="@openGraphModel" />
+    <LinkDataComponent Model="@linkData" />
+</HeadContent>
+
+<section class="fullscreen" data-nosnippet>
+    <div class="parallax-frame parallax-focalanchortop" style="--animation-time: 0.5;">
+
+        <picture class="parallax-layer" style="--parallax-multiplier: 0.5">
+            <img decoding="async"src="@Assets["media/phasmophobia/background.webp"]" style="object-position: 40% 50%" class="flicker" />
+            <div class="grain"></div>
+        </picture>
+
+    </div>
+
+    <div class="fullscreen-footer">
+        <div class="fullscreen-footer-container container container-wide">
+            <picture>
+                <img decoding="async"class="titlecard" src="@Assets["media/phasmophobia/titlecard.svg"]" alt="Title card for the game 'Phasmophobia'." />
+            </picture>
+
+            <div class="titlerow">
+                <div class="flexible-space"></div>
+                <SteamPlayButton href="https://store.steampowered.com/app/739630/Phasmophobia/">Play on Steam</SteamPlayButton>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="cascade-container">
+    <div class="cascade" style="background: linear-gradient(to right, #bfb09e0d 0%, #101010 75%, #99000030 100%), url(media/noise.svg);">
+    </div>
+</div>
+
+<section class="container container-wide" data-nosnippet>
+    <h1>Phasmophobia</h1>
+</section>
+
+<aside class="project-summary">
+    <section>
+        <img decoding="async"class="project-featuredimage" src="@Assets["media/phasmophobia/social.webp"]" alt="Promotional material for the game 'Phasmophobia'." />
+
+        <PillCloud>
+            <Pill_Unity />
+            <Pill_CSharp />
+            <Pill_TechnicalArt />
+        </PillCloud>
+
+        <p>@openGraphModel.Description.Default</p>
+
+        <menu class="externallinks" aria-label="Project External links">
+            <li><a href="https://www.kineticgames.co.uk/phasmophobia" target="_blank"><SvgSprite Link="/icons.svg?v=1#icon-globe" Alt="Website" /></a></li>
+            <li><a class="palette-steam" href="https://store.steampowered.com/app/739630/Phasmophobia/" target="_blank"><SvgSprite Link="/icons.svg?v=1#icon-steam" Alt="Steam" /></a></li>
+            <li><a class="palette-playstation" href="https://www.playstation.com/en-gb/games/phasmophobia/" target="_blank"><SvgSprite Link="/icons.svg?v=1#icon-playstation" Alt="PlayStation" /></a></li>
+            <li><a class="palette-xbox" href="https://www.xbox.com/en-GB/games/store/phasmophobia-game-preview/9n6d60sbzn05" target="_blank"><SvgSprite Link="/icons.svg?v=1#icon-xbox" Alt="Xbox" /></a></li>
+            <li><a class="palette-youtube" href="https://youtu.be/sRa9oeo5KiY" target="_blank"><SvgSprite Link="/icons.svg?v=1#icon-youtube" Alt="YouTube" /></a></li>
+        </menu>
+
+        <ShareLink Url="@openGraphModel.CanonicalUrl.Html" />
+
+    </section>
+</aside>
+
+<section class="container">
+    <EmbedYouTube Url="https://www.youtube-nocookie.com/embed/sRa9oeo5KiY?si=ReT_v-pScRGteTmx" />
+</section>
+
+<HeadingScope>
+    <aside>
+        <section style="position: sticky; top: 64px;">
+            <div style="height: 5rem"></div>
+            <TableOfContents />
+        </section>
+
+    </aside>
+
+    <section class="container">
+
+        <Heading Level="2" Identifier="more-to-come">
+            <Text>More to Come</Text>
+            <Content>
+
+                <p>I can't wait to share with you what I've been doing on Phasmophobia!</p>
+
+                <p>For now though, I can share with you the 2025 Roadmap!</p>
+
+                <figure class="figure-image">
+                    <picture class="media-wide">
+                        <img decoding="async"src="@Assets["media/phasmophobia/phasmophobia-roadmap.webp"]" alt="The roadmap for Phasmophobia coming 2025." loading="lazy" />
+                    </picture>
+                    <figcaption><cite><a href="https://www.kineticgames.co.uk/blog/phasmophobia-2025-roadmap" target="_blank">The Phasmophobia 2025 Roadmap<SvgSprite Link="/icons.svg?v=1#icon-external-link" class="external-link-icon" /></a></cite>. Retrieved <time datetime="2025-02-23">February 23rd, 2025</time>.</figcaption>
+                </figure>
+
+
+                <Callout Type="construction">
+                    <Icon><SvgSprite Link="/icons.svg?v=1#fluent-emoji-high-contrast--construction" Alt="Check" /></Icon>
+                    <ChildContent>This section of my website is currently <b>under NDA</b>.</ChildContent>
+                </Callout>
+
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="setpass-calls">
+            <Prefix>Technical Art</Prefix>
+            <Text>Optimizing SetPass calls</Text>
+            <Content>
+
+                <p>The new Unity <b>SRP Batcher</b> can batch together renderers in many more configurations than the legacy <b>Dynamic Batcher</b>, but there are limitations. Whenever the shaders differ or shader keywords differ the <b>SRP Batcher</b> can't batch the renderers together. In order to increase the batch sizes, a couple of the following optimizations can be made.</p>
+
+                <h3>Consistent Material Keywords</h3>
+
+                <p>There are many reasons why shaders like the Unity URP Standard Lit shader might use different keywords, such as the usage of Alpha Clipping, Emission, Parallax Occlusion, and Detail Mapping.</p>
+
+                <p>Identifying instances where these shader keywords are unnecessary and fixing them via an automated process allows us to save many SetPass calls.</p>
+
+                <Callout Type="construction">
+                    <Icon><SvgSprite Link="/icons.svg?v=1#fluent-emoji-high-contrast--construction" Alt="Check" /></Icon>
+                    <ChildContent>This section of my website is currently <b>under construction</b>.</ChildContent>
+                </Callout>
+
+                <div style="height: 5rem"></div>
+
+            </Content>
+
+        </Heading>
+
+    </section>
+
+    <section class="section-feature">
+
+        <div class="parallax-frame parallax-focalanchortop">
+            <picture>
+                <img decoding="async"class="parallax-layer flicker" style="--parallax-multiplier: 0.5; object-position: 80% 50%" loading="lazy" src="@Assets["media/phasmophobia/asylum-outside.webp"]" />
+            </picture>
+            <div class="grain" style="height: 103%;"></div>
+        </div>
+
+    </section>
+
+</HeadingScope>

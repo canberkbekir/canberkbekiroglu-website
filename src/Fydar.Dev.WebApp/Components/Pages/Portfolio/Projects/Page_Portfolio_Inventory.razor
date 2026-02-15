@@ -1,0 +1,140 @@
+@layout DefaultLayout
+@page "/portfolio/inventory"
+@{
+    var openGraphModel = new OpenGraphModel()
+    {
+        Title = "Inventory - Fydar",
+        Description = "A complete inventory system.",
+        CanonicalUrl = "https://fydar.dev/portfolio/inventory",
+        Properties = [
+            new OpenGraphModelImage()
+            {
+                Url = "https://fydar.dev/media/header.webp",
+                Alt = "A portrait of Fydar in an anime art style."
+            }
+        ]
+    };
+    var linkData = new LinkData()
+    {
+        new LinkDataBreadcrumbList()
+        {
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Portfolio",
+                Item = "https://fydar.dev/portfolio"
+            },
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Inventory",
+                Item = "https://fydar.dev/portfolio/inventory"
+            }
+        }
+    };
+}
+
+<HeadContent>
+    <OpenGraphComponent Model="@openGraphModel" />
+    <LinkDataComponent Model="@linkData" />
+</HeadContent>
+
+<section class="container container-wide" data-nosnippet>
+    <h1>Inventory</h1>
+</section>
+
+<aside class="project-summary">
+    <section>
+        <PillCloud>
+            <Pill_CSharp />
+        </PillCloud>
+
+        <p>@openGraphModel.Description.Default</p>
+
+        <menu class="externallinks" aria-label="Project External links">
+        </menu>
+
+        <ShareLink Url="@openGraphModel.CanonicalUrl.Html" />
+    </section>
+</aside>
+
+<HeadingScope>
+    <aside>
+        <section style="position: sticky; top: 64px;">
+            <div style="height: 5rem"></div>
+            <TableOfContents />
+        </section>
+
+    </aside>
+
+    <section class="container">
+
+        <Heading Level="2" Identifier="items">
+            <Prefix>Designing the</Prefix>
+            <Text>Items</Text>
+            <Media><SvgSprite Link="/icons.svg?v=1#icon-knapsack" /></Media>
+            <Content>
+                <p>Items are the fundamental building blocks of any inventory system. They represent anything that can be stored, traded, or used within the game world.  A well-designed item system should be flexible enough to handle a wide variety of items, from simple resources like wood and gold to complex objects like weapons, armor, and quest items.</p>
+
+                <Callout Type="construction">
+                    <Icon><SvgSprite Link="/icons.svg?v=1#fluent-emoji-high-contrast--construction" Alt="Check" /></Icon>
+                    <ChildContent>This section of my website is currently <b>under construction</b>.</ChildContent>
+                </Callout>
+
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="stacks">
+            <Prefix>Designing the</Prefix>
+            <Text>Item Stacks</Text>
+            <Media><SvgSprite Link="/icons.svg?v=1#icon-knapsack" /></Media>
+            <Content>
+
+                <Callout Type="construction">
+                    <Icon><SvgSprite Link="/icons.svg?v=1#fluent-emoji-high-contrast--construction" Alt="Check" /></Icon>
+                    <ChildContent>This section of my website is currently <b>under construction</b>.</ChildContent>
+                </Callout>
+
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="containers">
+            <Prefix>Designing the</Prefix>
+            <Text>Item Containers</Text>
+            <Media><SvgSprite Link="/icons.svg?v=1#icon-knapsack" /></Media>
+            <Content>
+
+                <p>Item containers are a common representation of anything that contains items. These can be a <b>single slot</b> for items in your bag or a whole <b>inventories</b> of items.</p>
+                
+                <h3>Container Constraints</h3>
+
+                <p>A common demand of inventory systems is to place constraints on what sort of items can enter containers. Using a common notion of an item "container" allows us to define constraints that can be reused across all item containers. For example, let's say we have an equipment slot on our character that can only accept weapons. We can define a constraint that limits that slot to only accept weapons, and re-use it on an inventory that can only accept weapons like a weapon rack.</p>
+
+                <p>Putting constraints on containers isn't just limited to slotted inventory systems; games like The Elder Scrolls V: Skyrim have allow you to carry an unlimited amount of items, but then limits the amount you can carry using <b>item weight</b>.</p>
+                
+                <Callout Type="construction">
+                    <Icon><SvgSprite Link="/icons.svg?v=1#fluent-emoji-high-contrast--construction" Alt="Check" /></Icon>
+                    <ChildContent>This section of my website is currently <b>under construction</b>.</ChildContent>
+                </Callout>
+
+            </Content>
+        </Heading>
+
+
+        <Heading Level="2" Identifier="transactions">
+            <Prefix>Powerful APIs with</Prefix>
+            <Text>Inventory Transactions</Text>
+            <Media><SvgSprite Link="/icons.svg?v=1#icon-knapsack" /></Media>
+            <Content>
+                <p>A very common issue with inventories and items, especially in multiplayer games, is <b>vanishing or duplication glitches</b>. These glitches can result on a broken game economy. These issues should be tackled on a <b>systemic level</b>.</p>
+
+                <p>Instead of directly modifying a slot or an inventory, we can represent these modifications as a series of operations within a whole <b>Transaction</b>. This allows for for easy integration with with multiplayer game systems.</p>
+
+                <Callout Type="construction">
+                    <Icon><SvgSprite Link="/icons.svg?v=1#fluent-emoji-high-contrast--construction" Alt="Check" /></Icon>
+                    <ChildContent>This section of my website is currently <b>under construction</b>.</ChildContent>
+                </Callout>
+
+            </Content>
+        </Heading>
+
+    </section>
+</HeadingScope>

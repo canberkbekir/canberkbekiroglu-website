@@ -1,0 +1,16 @@
+<!--
+<div class="row sharelink" data-nosnippet>
+    <input class="sharelink-input" name="canonical-url" id="canonical-url-input" value="@Url.Replace("https://", "")" readonly />
+    <button class="sharelink-copybutton">
+        Copy
+    </button>
+    <button class="sharelink-sharebutton">
+        Share
+    </button>
+</div>
+-->
+
+@code {
+    [Parameter]
+    public string? Url { get; set; }
+}

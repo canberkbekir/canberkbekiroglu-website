@@ -1,0 +1,11 @@
+<PillCloud>
+    <NavLink class="pill palette-gamejam" href="@href" target="_blank"><SvgSprite Link="/icons.svg?v=1#icon-game-controller-duotone" Alt="Play" />@ChildContent<SvgSprite Link="/icons.svg?v=1#icon-external-link" class="external-link-icon" /></NavLink>
+</PillCloud>
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public string href { get; set; } = string.Empty;
+}

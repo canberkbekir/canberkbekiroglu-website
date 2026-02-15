@@ -1,0 +1,75 @@
+@layout GameLayout
+@page "/play/lostinstatic"
+
+@inject Noncer noncer;
+
+@{
+    var openGraphModel = new OpenGraphModel()
+    {
+        Title = "Play Lost in Static - Fydar",
+        Description = "The Game Boy demake of the Nintendo DS Pokémon Diamond and Pearl underground mining minigame.",
+        CanonicalUrl = "https://fydar.dev/play/lostinstatic",
+        Properties = [
+            new OpenGraphModelImage()
+            {
+                Url = "https://fydar.dev/media/lostinstatic/social.webp",
+                Alt = "Promotional material for the game 'Lost in Static'."
+            }
+        ]
+    };
+    var linkData = new LinkData()
+    {
+        new LinkDataBreadcrumbList()
+        {
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Play",
+                Item = "https://fydar.dev/play/"
+            },
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Lost in Static",
+                Item = "https://fydar.dev/play/lostinstatic"
+            }
+        }
+    };
+}
+
+<HeadContent>
+    <OpenGraphComponent Model="@openGraphModel" />
+    <LinkDataComponent Model="@linkData" />
+    <meta name="theme-color" content="#161618">
+    <link rel="shortcut icon" href="@Assets["/play/lostinstatic/favicon.ico"]">
+    <link rel="manifest" href="@Assets["/play/lostinstatic/manifest.webmanifest"]">
+    <link rel="preload" href="@Assets["/play/lostinstatic/build/lostinstatic.loader.js"]" as="script" fetchpriority="high" />
+</HeadContent>
+
+@{
+    var embedUnityConfig = new EmbedUnityConfig()
+    {
+        ProductName = "Lost in Static",
+        ProductVersion = new Version(0, 1, 0),
+        CompanyName = "Fydar, Lewis, Kris, Laurence, and Samirah",
+        LoaderUrl = Assets["/play/lostinstatic/build/lostinstatic.loader.js"],
+        FrameworkUrl = Assets["/play/lostinstatic/build/lostinstatic.framework.js.br"],
+        CodeUrl = Assets["/play/lostinstatic/build/lostinstatic.wasm.br"],
+        DataUrl = Assets["/play/lostinstatic/build/lostinstatic.data.br"],
+        StreamingAssetsUrl = "/play/lostinstatic/StreamingAssets",
+        Arguments = [],
+    };
+}
+
+<EmbedUnity Config="embedUnityConfig">
+    <Placeholder>
+        <img decoding="async" src="@Assets["play/lostinstatic/favicon.ico"]" alt="The logo for 'Lost in Static'." style="width: 200px; max-width: 90%; margin-bottom: 32px;" />
+    </Placeholder>
+</EmbedUnity>
+
+<script nonce="@noncer.Nonce">
+    var serviceWorkerUrl = "@Assets["play/lostinstatic/ServiceWorker.js"]";
+    window.addEventListener("load", function () {
+        if ("serviceWorker" in navigator) {
+            navigator.serviceWorker.register(serviceWorkerUrl);
+        }
+    });
+</script>

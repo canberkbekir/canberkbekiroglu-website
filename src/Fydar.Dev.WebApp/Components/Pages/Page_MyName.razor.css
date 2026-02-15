@@ -1,0 +1,162 @@
+.originchart {
+    /*
+    max-width: 340px;
+    background: rgb(23 26 32);
+    padding: 8px 8px;
+    border-radius: 16px;
+        */
+    width: 100%;
+    max-height: 220px;
+    padding: 10px 8px;
+    box-sizing: border-box;
+    background: rgb(23 26 32);
+    border-radius: 16px;
+    object-fit: contain;
+}
+    .originchart + h3 {
+        margin-block-start: 2em;
+    }
+
+.phonetics {
+    display: inline-block;
+    position: relative;
+    text-align: left;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-right: -20px;
+    padding-top: 4px;
+    padding-bottom: 20px;
+    padding-left: 24px;
+    padding-right: 0;
+    font-size: 1.625rem;
+    letter-spacing: 8px;
+    color: #ffffff80;
+    cursor: pointer;
+    font-weight: 400;
+    white-space: nowrap;
+    background: none;
+    border: 0;
+    width: 190px;
+}
+
+    .phonetics:before,
+    .phonetics:after {
+        content: "";
+        height: 0;
+        left: 32px;
+        position: absolute;
+        z-index: -1;
+        bottom: 8px;
+    }
+
+    .phonetics .syllable1:before {
+        content: "";
+        height: 0;
+        left: 12px;
+        bottom: 5px;
+        position: absolute;
+        border-top: 6px solid transparent;
+        border-bottom: 6px solid transparent;
+        border-left: 12px solid #ffffff20;
+        transition: border-left 0.1s linear;
+    }
+
+    .phonetics:hover .syllable1:before,
+    .phonetics:focus-visible .syllable1:before {
+        border-left-color: #ffffff80;
+    }
+
+    .phonetics:before {
+        right: 2px;
+        border-bottom: 2px solid #ffffff20;
+    }
+
+    .phonetics:after {
+        border-bottom: 2px solid #e2b384;
+    }
+
+    .phonetics.readanimation:after {
+        animation: readanimation-fydar 1s linear;
+    }
+
+    .phonetics.readanimation .syllable1 {
+        animation: readanimation-syllable1 1s linear;
+    }
+
+
+    .phonetics.readanimation .syllable2 {
+        animation: readanimation-syllable2 1s linear;
+    }
+
+@keyframes readanimation-fydar {
+    0% {
+        right: calc(100% - 2px);
+        opacity: 0;
+    }
+
+    5% {
+        right: calc(100% - 2px);
+        opacity: 1;
+    }
+
+    25% {
+        right: 42.5%;
+    }
+
+    50% {
+        right: 42.5%;
+    }
+
+    65% {
+        right: 2px;
+    }
+
+    75% {
+        opacity: 1;
+    }
+
+    90% {
+        right: 2px;
+    }
+
+    100% {
+        right: 2px;
+        opacity: 0;
+    }
+}
+
+@keyframes readanimation-syllable1 {
+    0% {
+        color: #ffffff80;
+    }
+
+    5% {
+        color: #fffffff0;
+    }
+
+    25% {
+        color: #fffffff0;
+    }
+
+    50% {
+        color: #ffffff80;
+    }
+}
+
+@keyframes readanimation-syllable2 {
+    0% {
+        color: #ffffff80;
+    }
+
+    50% {
+        color: #ffffff80;
+    }
+
+    55% {
+        color: #fffffff0;
+    }
+
+    100% {
+        color: #ffffff80;
+    }
+}

@@ -1,0 +1,743 @@
+@using Microsoft.AspNetCore.OutputCaching;
+
+@layout DefaultLayout
+@page "/"
+@page "/portfolio"
+
+@attribute [OutputCache(Duration = 600)]
+
+@inject NavigationManager NavigationManager
+@inject Noncer noncer;
+
+@{
+    var openGraphModel = new OpenGraphModel()
+    {
+        Title = "Portfolio - Fydar",
+        Description = "Fydar is a game developer and engineer who thrives when pushing technical boundaries and creating memorable experiences.",
+        CanonicalUrl = "https://fydar.dev",
+        Properties = [
+            new OpenGraphModelImage()
+            {
+                Url = "https://fydar.dev/media/header.webp",
+                Alt = "A portrait of Fydar in an anime art style."
+            }
+        ]
+    };
+    var linkData = new LinkData()
+    {
+        new LinkDataBreadcrumbList()
+        {
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Portfolio",
+                Item = "https://fydar.dev/"
+            }
+        }
+    };
+}
+
+<HeadContent>
+    <OpenGraphComponent Model="@openGraphModel" />
+    <LinkDataComponent Model="@linkData" />
+
+    <link rel="preload" href="@Assets["media/signature.svg"]" as="image" fetchpriority="high" />
+</HeadContent>
+
+<aside class="landing-aside">
+    <audio id="pronunciation-fydar" preload="none">
+        <source src="@Assets["media/pronunciation-fydar.mp3"]" type="audio/mpeg">
+        <source src="@Assets["media/pronunciation-fydar.ogg"]" type="audio/ogg">
+    </audio>
+
+	<button class="phonetics" id="pronunciation-phonetics">/<span class="syllable1">&#x2C8;fa&#618;.</span><span class="syllable2">d&#x251;&#x2D0;</span>/</button>
+
+    <h1>Fydar</h1>
+    <div class="subheading">The <b>Portfolio</b> <br /> of a <b>Programmer</b></div>
+
+    <menu class="externallinks" aria-label="Quick links" data-nosnippet>
+        <li><a href="https://github.com/Fydar" target="_blank"><SvgSprite Link="/icons.svg?v=1#icon-github" Alt="GitHub" /></a></li>
+        <li><a class="palette-linkedin" href="https://www.linkedin.com/in/fydar" target="_blank"><SvgSprite Link="/icons.svg?v=1#icon-linkedin" Alt="LinkedIn" /></a></li>
+        <li><a class="palette-youtube" href="https://www.youtube.com/@@fydar" target="_blank"><SvgSprite Link="/icons.svg?v=1#icon-youtube" Alt="YouTube" /></a></li>
+        <li><a href="https://assetstore.unity.com/publishers/13236" target="_blank"><SvgSprite Link="/icons.svg?v=1#icon-unity" Alt="Unity Asset Store" /></a></li>
+    </menu>
+
+    <script nonce="@noncer.Nonce">
+        const audio = document.getElementById('pronunciation-fydar');
+        const text = document.getElementById('pronunciation-phonetics');
+
+        text.onclick = () => {
+            audio.play();
+        };
+        audio.onplay = () => {
+            text.classList.remove('readanimation');
+            text.classList.add('readanimation');
+        };
+        audio.onended = function() {
+            text.classList.remove('readanimation');
+        };
+    </script>
+
+    <!--
+    <div class="row award-row" data-nosnippet>
+        <div class="award">
+            <div class="award-value">
+                <SvgSprite class="laurel-left" Link="/icons.svg?v=1#icon-laurel-left" />
+                8
+                <SvgSprite class="laurel-right" Link="/icons.svg?v=1#icon-laurel-left" />
+            </div>
+            <div class="award-name">
+                Titles
+            </div>
+        </div>
+        <div class="award">
+            <div class="award-value">
+                <SvgSprite class="laurel-left" Link="/icons.svg?v=1#icon-laurel-left" />
+                7
+                <SvgSprite class="laurel-right" Link="/icons.svg?v=1#icon-laurel-left" />
+            </div>
+            <div class="award-name">
+                Years
+            </div>
+        </div>
+    </div>
+
+    <div class="row row-download">
+        <Card href="/media/resume.pdf" download="Fydar-Resume.pdf">
+            <div class="card-button row">
+                <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-download" Alt="Download" />
+                <div class="column">
+                    <span class="card-header">Download my Resume</span>
+                </div>
+            </div>
+        </Card>
+    </div>
+    -->
+</aside>
+
+
+<section class="landing-container container" data-nosnippet>
+
+    <img decoding="async"class="feature-signature" src="@Assets["media/signature.svg"]" alt="Fydar's signature." />
+
+</section>
+
+<HeadingScope>
+    <aside class="toc-aside">
+        <section style="position: sticky; top: 64px;">
+            <div style="height: 5rem"></div>
+            <TableOfContents />
+        </section>
+
+    </aside>
+
+    <section class="container">
+
+        <Heading Level="2" Identifier="titles">
+            <Text>Titles</Text>
+            <Content>
+                <CoverGrid>
+
+                    <CoverDate Date="2025">
+                        <Cover_Phasmophobia />
+                    </CoverDate>
+
+                    <CoverDate Date="2024">
+                        <Cover_UNO />
+                    </CoverDate>
+
+                    <CoverDate>
+                        <Cover_Southfield />
+                    </CoverDate>
+
+                    <CoverDate Date="2022">
+                        <Cover_Outrage />
+                    </CoverDate>
+
+                    <CoverDate>
+                        <Cover_StarCitizen />
+                    </CoverDate>
+
+                    <CoverDate>
+                        <Cover_Squadron42 />
+                    </CoverDate>
+
+                    <CoverDate Date="2020">
+                        <Cover_LegoStarWarsBattles />
+                    </CoverDate>
+
+                    <CoverDate Date="2018">
+                        <Cover_Eitr />
+                    </CoverDate>
+
+                </CoverGrid>
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="systems-engineer">
+            <Text>Systems Engineer</Text>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/behaviour" Signed=true>
+                        <FeaturedImage>
+                            <picture>
+                                <SvgSprite class="card-image" Link="/icons.svg?v=1#icon-nodeeditor" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Behaviour</HeaderText>
+                        <ChildContent>
+
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-fydarbehaviour" Alt="An illustration of the node based editor." />
+                                    <div class="column">
+                                        <h3 class="card-header">Behaviour</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description"><b>Data-driven</b> and <b>flexible</b> <b>node-based</b> behaviour engine for items, abilities, quests, enemies, achievements, and more.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/inventory" Signed=true>
+                        <FeaturedImage>
+                            <picture>
+                                <SvgSprite class="card-image" Link="/icons.svg?v=1#icon-inventory" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Inventory</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-fydarinventory" Alt="An illustration of the inventory system." />
+                                    <div class="column">
+                                        <h3 class="card-header">Inventory</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">Complete item and inventory system with transactions, constraints, equipment, tooltips, and more.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/entities">
+                        <HeaderText>Entities</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-fydarentities" />
+                                    <div class="column">
+                                        <h3 class="card-header">Entities</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">Highly-optimized ECS with a native and intuitive C# API.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <!--
+                    <Card href="/portfolio/numerics">
+                        <div class="card-container">
+                            <div class="row">
+                                <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-numbers" />
+                                <div class="column">
+                                    <h3 class="card-header">Numerics</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="card-description">Deterministic mathematics library built around a custom Fixed-point numeric type.</p>
+                            </div>
+                        </div>
+                    </Card>
+                    <Card href="/portfolio/geometry">
+                        <div class="card-container">
+                            <div class="row">
+                                <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-fydargeometry" />
+                                <div class="column">
+                                    <h3 class="card-header">Geometry</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <p class="card-description">Deterministic 2D and 3D geometry library utilising Fixed-point numerics.</p>
+                            </div>
+                        </div>
+                    </Card>
+                    -->
+                    <Card href="/portfolio/lodestone">
+                        <HeaderText>Lodestone</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-network-right-solid" />
+                                    <div class="column">
+                                        <h3 class="card-header">Lodestone</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">An asset build pipeline, asset database, and build system.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+
+                <ul class="row row-readmore">
+                    <Card href="/portfolio/systems">
+                        <HeaderText>See More Systems</HeaderText>
+                        <ChildContent>
+                            <div class="card-button row">
+                                <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#tabler--settings" />
+                                <div class="column">
+                                    <span class="card-header">See More Systems</span>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </ul>
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="gameplay-programmer">
+            <Text>Gameplay Programmer</Text>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/miniminer">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/miniminer/card.webp"]" alt="Preview of the game 'Mini Miner' showing a puzzle." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Mini Miner</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-miniminer" />
+                                    <div class="column">
+                                        <h3 class="card-header">Mini Miner</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">The Game Boy demake of the Nintendo DS <i>Pokémon Diamond and Pearl</i> underground mining minigame.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/astralelites">
+                        <FeaturedImage>
+                            <picture>
+                                <SvgSprite class="card-image" Link="/icons.svg?v=1#illustration-astralelites" alt="Preview of the game 'Astral Elites' with a spaceship flying around and destroying asteroids." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Astral Elites</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-astralelites" />
+                                    <div class="column">
+                                        <h3 class="card-header">Astral Elites</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">The physics-based and fast-paced asteroid clone for the modern era.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/raidhealersimulator">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="400" height="300" class="card-image" src="@Assets["media/raidhealersimulator/card.webp"]" alt="Preview of the Raid Healer Simulator game." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Raid Healer Simulator</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-raidhealersimulator" />
+                                    <div class="column">
+                                        <h3 class="card-header">Raid Healer Simulator</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">The UI-only simulator of the raid healer experience featuring verbal abuse.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/snoot">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="400" height="300" class="card-image" src="@Assets["media/snoot/keyart-4x3-400x300.webp"]" alt="Preview of the game 'Snoot' featuring the protagonist in the world with signs of life." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Snoot</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-snoot" />
+                                    <div class="column">
+                                        <h3 class="card-header">Snoot</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">The cute crafting game to restore nature and life to the world.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+
+                <ul class="row row-readmore">
+                    <Card href="/portfolio/gameplay">
+                        <HeaderText>See More Gameplay</HeaderText>
+                        <ChildContent>
+                            <div class="card-button row">
+                                <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#tabler--pacman" />
+                                <div class="column">
+                                    <span class="card-header">See More Gameplay</span>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </ul>
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="backend-engineering" Palette="backend">
+            <Text>Backend Engineer</Text>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/mywebsite">
+                        <HeaderText>My Website</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-fydar" />
+                                    <div class="column">
+                                        <h3 class="card-header">My Website</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <Pill_AspNetCore />
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">This portfolio website made using <b>ASP.NET Core</b> and hosted in <b>AWS</b>.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/pewpew">
+                        <HeaderText>Pew Pew</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-network-right-solid" />
+                                    <div class="column">
+                                        <h3 class="card-header">Pew Pew</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <Pill_AspNetCore />
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">A 20v20 .io style browser game made in 48 hours using <b>ASP.NET Core</b> and hosted in <b>AWS</b>.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+
+                <ul class="row row-readmore">
+                    <Card href="/portfolio/backend">
+                        <HeaderText>See More Backend</HeaderText>
+                        <ChildContent>
+                            <div class="card-button row">
+                                <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#tabler--server-2" />
+                                <div class="column">
+                                    <span class="card-header">See More Backend</span>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </ul>
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="tools-programming" Palette="tools">
+            <Text>Tools Programming</Text>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/southfield#icon-generation">
+                        <HeaderText>Holodrone</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-holodrone" />
+                                    <div class="column">
+                                        <h3 class="card-header">Holodrone</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">Automatic screenshot capture for automated testing and icon generation.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/southfield#gradient-recolouring">
+                        <HeaderText>Gradients</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-network-right-solid" />
+                                    <div class="column">
+                                        <h3 class="card-header">Gradients</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">Asset-based gradient editing.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/eitr#skill-tree-editing">
+                        <HeaderText>Skill Tree Editor</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-network-right-solid" />
+                                    <div class="column">
+                                        <h3 class="card-header">Skill Tree Editor</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">Inspired by the skill tree in <i>'Path of Exile'</i>, a skill tree editor capable of making massive skill trees.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/lodestone">
+                        <HeaderText>Lodestone</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-network-right-solid" />
+                                    <div class="column">
+                                        <h3 class="card-header">Lodestone</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">A standalone asset editor, management, and build system.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card>
+                        <HeaderText>Samples</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-palette-swatch-variant" />
+                                    <div class="column">
+                                        <h3 class="card-header">Samples</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">Automation of code documentation, render code samples with advanced syntax highlighting.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/asseticons">
+                        <HeaderText>AssetIcons</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-network-right-solid" />
+                                    <div class="column">
+                                        <h3 class="card-header">AssetIcons</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">Published on the Unity Asset Store, a tool for generating icons for your assets.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+
+                <ul class="row row-readmore">
+                    <Card href="/portfolio/tools">
+                        <HeaderText>See More Tools</HeaderText>
+                        <ChildContent>
+                            <div class="card-button row">
+                                <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#tabler--tools" />
+                                <div class="column">
+                                    <span class="card-header">See More Tools</span>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </ul>
+            </Content>
+        </Heading>
+
+
+        <Heading Level="2" Identifier="education" Palette="northbrook">
+            <Text>Education</Text>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/thedwellers">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/thedwellers/card.webp"]" alt="Preview of the game 'The Dwellers'" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>The Dwellers</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-thedwellers" />
+                                    <div class="column">
+                                        <h3 class="card-header">The Dwellers</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <Pill_Tools />
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">A 3D dungeon crawler game demo with a full RPG item system, featuring a wide range of weapons and other equipment.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/voxelmultiplayer">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/voxelmultiplayer/card.webp"]" alt="Preview of the Voxel Multiplayer, showing the player character atop of a mountain." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Voxel Multiplayer</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-voxelmultiplayer" />
+                                    <div class="column">
+                                        <h3 class="card-header">Voxel Multiplayer</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <Pill_Multiplayer />
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">A voxel-art multiplayer PvP game with a custom voxel-art terrain generator for rendering large worlds.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/thenewearthconflict">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/thenewearthconflict/card.webp"]" alt="A preview of the game 'The New Earth Conflict' featuring the player ship engaging in combat." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>The New Earth Conflict</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-thenewearthconflict" />
+                                    <div class="column">
+                                        <h3 class="card-header">The New Earth Conflict</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">A realtime space battle where you take control over a battleship and pilot it into battle against an AI team.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/cryptcrawl">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/cryptcrawl/keyart-4x3.png"]" alt="A preview of the game 'Crypt Crawl' featuring the protagonist wizard in a brown dungeon." style="image-rendering: pixelated;" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Crypt Crawl</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-cryptcrawl" />
+                                    <div class="column">
+                                        <h3 class="card-header">Crypt Crawl</h3>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <p class="card-description">A pixel-art dungeon crawler with a custom tile rendering and rule-based tiles made before Unity created their own.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+
+                <ul class="row row-readmore">
+                    <Card href="/portfolio/northbrook">
+                        <HeaderText>My Northbrook Education</HeaderText>
+                        <ChildContent>
+                            <div class="card-button row">
+                                <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-northbrook-college" />
+                                <div class="column">
+                                    <span class="card-header">My Northbrook Education</span>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </ul>
+            </Content>
+        </Heading>
+
+    </section>
+</HeadingScope>
+
+
+<!--
+<section class="container">
+
+    <h2>Interested in hiring me?</h2>
+
+    <p>Check out some of my previously submitted code tests!</p>
+
+    <CardGrid Size="md">
+        <Card>
+            <ChildContent>
+                <div class="card-container">
+                    <div class="row">
+                        <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-network-right-solid" />
+                        <div class="column">
+                            <h3 class="card-header">Air-Sea Battle</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="card-description">Applying my systems architecture to gameplay programming.</p>
+                    </div>
+                </div>
+            </ChildContent>
+        </Card>
+        <Card>
+            <ChildContent>
+                <div class="card-container">
+                    <div class="row">
+                        <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-textconstraints" />
+                        <div class="column">
+                            <h3 class="card-header">Text Constraints</h3>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <p class="card-description">A simple library for producing password and text validation policies.</p>
+                    </div>
+                </div>
+            </ChildContent>
+        </Card>
+    </CardGrid>
+
+</section>
+-->

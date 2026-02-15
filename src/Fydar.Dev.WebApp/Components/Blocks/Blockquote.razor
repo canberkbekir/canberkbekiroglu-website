@@ -1,0 +1,21 @@
+<figure class="figure-blockquote">
+    <blockquote>
+        @ChildContent
+    </blockquote>
+
+    @if (Source != null)
+    {
+        <figcaption>
+            @Source
+        </figcaption>
+    }
+</figure>
+
+
+@code {
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment? Source { get; set; }
+}

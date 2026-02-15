@@ -1,0 +1,608 @@
+@layout DefaultLayout
+@page "/portfolio/gamejams"
+@using Microsoft.AspNetCore.OutputCaching
+@{
+    var openGraphModel = new OpenGraphModel()
+    {
+        Title = "Game Jams - Fydar",
+        Description = "Fydar is a game developer and engineer who thrives when pushing technical boundaries and creating memorable experiences.",
+        CanonicalUrl = "https://fydar.dev/portfolio/gamejams",
+        Properties = [
+            new OpenGraphModelImage()
+            {
+                Url = "https://fydar.dev/media/header.webp",
+                Alt = "A portrait of Fydar in an anime art style."
+            }
+        ]
+    };
+    var linkData = new LinkData()
+    {
+        new LinkDataBreadcrumbList()
+        {
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Portfolio",
+                Item = "https://fydar.dev/portfolio"
+            },
+            new LinkDataBreadcrumbListItem()
+            {
+                Name = "Game Jams",
+                Item = "https://fydar.dev/portfolio/gamejams"
+            }
+        }
+    };
+}
+
+<HeadContent>
+    <OpenGraphComponent Model="@openGraphModel" />
+    <LinkDataComponent Model="@linkData" />
+</HeadContent>
+
+<section class="container container-wide" data-nosnippet>
+    <h1>Game Jams</h1>
+</section>
+
+<HeadingScope>
+    <aside>
+        <section style="position: sticky; top: 64px;">
+            <div style="height: 5rem"></div>
+            <TableOfContents />
+        </section>
+
+    </aside>
+
+    <section class="container">
+
+        <Heading Level="2" Identifier="2024">
+            <Text>2024 <span class="subtle">(1)</span></Text>
+            <SidebarText>2024</SidebarText>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/cakedodge">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/cakedodge/card.webp"]" alt="Preview of the game 'Cake Dodge'." />
+                            </picture>
+                        </FeaturedImage>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-cakedodge" />
+                                    <div class="column">
+                                        <h3 class="card-header">Cake Dodge</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-systems"><SvgSprite Link="/icons.svg?v=1#tabler--settings" Alt="Code Test" />Code Test</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">A mobile game created for a code test where the player must dodge falling cakes.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="2022">
+            <Text>2022 <span class="subtle">(2)</span></Text>
+            <SidebarText>2022</SidebarText>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/loversdefence">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/loversdefence/card.webp"]" alt="Preview of the game 'Lovers' Defence'." style="image-rendering: pixelated;" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Lovers Defence</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-loversdefence" />
+                                    <div class="column">
+                                        <h3 class="card-header">Lovers Defence</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-ludumdare-jam"><SvgSprite Link="/icons.svg?v=1#icon-ludumdare" Alt="Ludum Dare 50 Jam" />Ludum Dare 50 Jam</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">Interactive visual novel in a beautiful world.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/bloodlust">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/bloodlust/card.webp"]" alt="Preview of the game 'Bloodlust'." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Bloodlust</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-bloodlust" />
+                                    <div class="column">
+                                        <h3 class="card-header">Bloodlust</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-globalgamejam"><SvgSprite Link="/icons.svg?v=1#icon-globalgamejam" Alt="Global Game Jam 2022" />Global Game Jam 2022</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">Interactive visual novel in a beautiful world.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="2021">
+            <Text>2021 <span class="subtle">(2)</span></Text>
+            <SidebarText>2021</SidebarText>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/endlessplatform">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/endlessplatform/card.webp"]" alt="Preview of the game 'Endless Platform'." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Endless Platform</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-endlessplatform" />
+                                    <div class="column">
+                                        <h3 class="card-header">Endless Platform</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-systems"><SvgSprite Link="/icons.svg?v=1#tabler--settings" Alt="Code Test" />Code Test</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">A fully procedurally generated spline-based terrain for a 2D platformer.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/pewpew">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/pewpew/card.webp"]" alt="Preview of the game 'Pew Pew'." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Pew Pew</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-pewpew" />
+                                    <div class="column">
+                                        <h3 class="card-header">Pew Pew</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-globalgamejam"><SvgSprite Link="/icons.svg?v=1#icon-globalgamejam" Alt="Global Game Jam 2021" />Global Game Jam 2021</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">Coordinate with your team in a multiplayer space-shooter.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="2020">
+            <Text>2020 <span class="subtle">(4)</span></Text>
+            <SidebarText>2020</SidebarText>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/miniminer">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/miniminer/card.webp"]" alt="Preview of the game 'Mini Miner' showing a puzzle." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Mini Miner</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-miniminer" />
+                                    <div class="column">
+                                        <h3 class="card-header">Mini Miner</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-gameboy"><SvgSprite Link="/icons.svg?v=1#icon-gbjam" Alt="GBJam 8" />GBJam 8</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">The Game Boy demake of the Nintendo DS <i>Pokémon Diamond and Pearl</i> underground mining minigame.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/void">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="400" height="300" class="card-image" src="@Assets["media/void/card.webp"]" alt="Preview of the game 'Void'." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Void</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-void" />
+                                    <div class="column">
+                                        <h3 class="card-header">Void</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-minijam"><SvgSprite Link="/icons.svg?v=1#icon-minijam" Alt="MiniJam 67" />MiniJam 67</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">A top-down space RTS.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/raidhealersimulator">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="400" height="300" class="card-image" src="@Assets["media/raidhealersimulator/card.webp"]" alt="Preview of the game 'Raid Healer Simulator'." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Raid Healer Simulator</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-raidhealersimulator" />
+                                    <div class="column">
+                                        <h3 class="card-header">Raid Healer Simulator</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-ludumdare-compo"><SvgSprite Link="/icons.svg?v=1#icon-ludumdare" Alt="Ludum Dare 46 Compo" />Ludum Dare 46 Compo</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">The UI-only simulator of the raid healer experience featuring verbal abuse.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/snoot">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="400" height="300" class="card-image" src="@Assets["media/snoot/keyart-4x3-400x300.webp"]" alt="Preview of the game 'Snoot' featuring the protagonist in the world with signs of life." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Snoot</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-snoot" />
+                                    <div class="column">
+                                        <h3 class="card-header">Snoot</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-globalgamejam"><SvgSprite Link="/icons.svg?v=1#icon-globalgamejam" Alt="Global Game Jam 2020" />Global Game Jam 2020</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">The cute crafting game to restore nature and life to the world.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="2019">
+            <Text>2019 <span class="subtle">(4)</span></Text>
+            <SidebarText>2019</SidebarText>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/roadtonorthstead">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="400" height="300" class="card-image" src="@Assets["media/roadtonorthstead/keyart-4x3.png"]" alt="Preview of the game 'Road to Northstead'." style="image-rendering: pixelated;" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Road to Northstead</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-roadtonorthstead" />
+                                    <div class="column">
+                                        <h3 class="card-header">Road to Northstead</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-minijam"><SvgSprite Link="/icons.svg?v=1#icon-minijam" Alt="MiniJam 40" />MiniJam 40</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">The game jam visual novel with questing and crafting to survive the night.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/astralelites">
+                        <FeaturedImage>
+                            <picture>
+                                <SvgSprite class="card-image" Link="/icons.svg?v=1#illustration-astralelites" alt="Preview of the game 'Astral Elites' with a spaceship flying around and destroying asteroids." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Astral Elites</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-astralelites" />
+                                    <div class="column">
+                                        <h3 class="card-header">Astral Elites</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-systems"><SvgSprite Link="/icons.svg?v=1#tabler--settings" Alt="Code Test" />Code Test</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">The physics-based and fast-paced asteroid clone for the modern era.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/lostblues">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="400" height="300" class="card-image" src="@Assets["media/lostblues/keyart-4x3.png"]" alt="Preview of the game 'Lost Blues'." style="image-rendering: pixelated;" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Lost Blues</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-lostblues" />
+                                    <div class="column">
+                                        <h3 class="card-header">Lost Blues</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-minijam"><SvgSprite Link="/icons.svg?v=1#icon-minijam" Alt="MiniJam 36" />MiniJam 36</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">The clicker-style where you farm kelp and release fish.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/sofarfromhome">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="400" height="300" class="card-image" src="@Assets["media/sofarfromhome/card.webp"]" alt="Preview of the game 'So Far From Home'." style="image-rendering: pixelated;" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>So Far From Home</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-sofarfromhome" />
+                                    <div class="column">
+                                        <h3 class="card-header">So Far From Home</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-globalgamejam"><SvgSprite Link="/icons.svg?v=1#icon-globalgamejam" Alt="Global Game Jam 2019" />Global Game Jam 2019</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">Searching between the sofa cushions for a missing key, but what else is down there?</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="2018">
+            <Text>2018 <span class="subtle">(3)</span></Text>
+            <SidebarText>2018</SidebarText>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/lostinstatic">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="400" height="300" class="card-image" src="@Assets["media/lostinstatic/card.webp"]" alt="Preview of the game 'Lost in Static'." style="image-rendering: pixelated;" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Lost in Static</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-lostinstatic" />
+                                    <div class="column">
+                                        <h3 class="card-header">Lost in Static</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-globalgamejam"><SvgSprite Link="/icons.svg?v=1#icon-globalgamejam" Alt="Global Game Jam 2018" />Global Game Jam 2018</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">Remote control a drone to take down a rouge AI controlling the station.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/thedwellers">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/thedwellers/card.webp"]" alt="Preview of the game 'The Dwellers'" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>The Dwellers</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-thedwellers" />
+                                    <div class="column">
+                                        <h3 class="card-header">The Dwellers</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-northbrook"><SvgSprite Link="/icons.svg?v=1#icon-northbrook-college" Alt="Northbrook" />Northbrook</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">A 3D dungeon crawler game demo with a full RPG item system, featuring a wide range of weapons and other equipment.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/voxelmultiplayer">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/voxelmultiplayer/card.webp"]" alt="Preview of the Voxel Multiplayer, showing the player character atop of a mountain." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Voxel Multiplayer</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-voxelmultiplayer" />
+                                    <div class="column">
+                                        <h3 class="card-header">Voxel Multiplayer</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-northbrook"><SvgSprite Link="/icons.svg?v=1#icon-northbrook-college" Alt="Northbrook" />Northbrook</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">A voxel-art multiplayer PvP game with a custom voxel-art terrain generator for rendering large worlds.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="2017">
+            <Text>2017 <span class="subtle">(3)</span></Text>
+            <SidebarText>2017</SidebarText>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/thenewearthconflict">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/thenewearthconflict/card.webp"]" alt="A preview of the game 'The New Earth Conflict' featuring the player ship engaging in combat." />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>The New Earth Conflict</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-thenewearthconflict" />
+                                    <div class="column">
+                                        <h3 class="card-header">The New Earth Conflict</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-northbrook"><SvgSprite Link="/icons.svg?v=1#icon-northbrook-college" Alt="Northbrook" />Northbrook</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">A realtime space battle where you take control over a battleship and pilot it into battle against an AI team.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/lilypadleap">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="400" height="300" class="card-image" src="@Assets["media/lilypadleap/card.webp"]" alt="Preview of the game 'Lilypad Leap'." style="image-rendering: pixelated;" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Lilypad Leap</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-lilypadleap" />
+                                    <div class="column">
+                                        <h3 class="card-header">Lilypad Leap</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-outoftheblue"><SvgSprite Link="/icons.svg?v=1#icon-outoftheblue" Alt="Out of The Blue Studios" />Out of The Blue Studios</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">A meditative and addictive game where you jump a frog across lily pads.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                    <Card href="/portfolio/astralswarm">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="400" height="300" class="card-image" src="@Assets["media/astralswarm/card.webp"]" alt="Preview of the game 'Astral Swarm'." style="image-rendering: pixelated;" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Astral Swarm</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-astralswarm" />
+                                    <div class="column">
+                                        <h3 class="card-header">Astral Swarm</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-outoftheblue"><SvgSprite Link="/icons.svg?v=1#icon-outoftheblue" Alt="Out of The Blue Studios" />Out of The Blue Studios</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">Battle endless swarms of enemy space ships across the galaxy.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+            </Content>
+        </Heading>
+
+        <Heading Level="2" Identifier="2016">
+            <Text>2016 <span class="subtle">(1)</span></Text>
+            <SidebarText>2016</SidebarText>
+            <Content>
+                <CardGrid Size="md">
+                    <Card href="/portfolio/cryptcrawl">
+                        <FeaturedImage>
+                            <picture>
+                                <img decoding="async"loading="lazy" width="640" height="480" class="card-image" src="@Assets["media/cryptcrawl/keyart-4x3.png"]" alt="A preview of the game 'Crypt Crawl' featuring the protagonist wizard in a brown dungeon." style="image-rendering: pixelated;" />
+                            </picture>
+                        </FeaturedImage>
+                        <HeaderText>Crypt Crawl</HeaderText>
+                        <ChildContent>
+                            <div class="card-container">
+                                <div class="row">
+                                    <SvgSprite class="card-keyicon" Link="/icons.svg?v=1#icon-cryptcrawl" />
+                                    <div class="column">
+                                        <h3 class="card-header">Crypt Crawl</h3>
+                                    </div>
+                                </div>
+                                <PillCloud>
+                                    <div class="pill palette-northbrook"><SvgSprite Link="/icons.svg?v=1#icon-northbrook-college" Alt="Northbrook" />Northbrook</div>
+                                </PillCloud>
+                                <div class="row">
+                                    <p class="card-description">A pixel-art dungeon crawler with a custom tile rendering and rule-based tiles made before Unity created their own.</p>
+                                </div>
+                            </div>
+                        </ChildContent>
+                    </Card>
+                </CardGrid>
+            </Content>
+        </Heading>
+
+    </section>
+</HeadingScope>

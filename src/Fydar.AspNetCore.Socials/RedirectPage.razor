@@ -1,0 +1,22 @@
+@using Fydar.AspNetCore.OpenGraph
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+	<OpenGraphComponent Model="@Redirect.Model" />
+</head>
+
+<body>
+	<p>Redirecting you to <a href="@Redirect.Destination">@Redirect.Destination</a>&hellip; If nothing happens, <a href="@Redirect.Destination">click here</a>.</p>
+    <script>
+		window.location.href = "@Redirect.Destination";
+    </script>
+</body>
+</html>
+
+@code {
+	[Parameter]
+	public SocialRedirectPolicy Redirect { get; set; }
+}

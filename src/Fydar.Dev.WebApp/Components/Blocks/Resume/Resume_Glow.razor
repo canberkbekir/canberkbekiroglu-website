@@ -1,0 +1,30 @@
+<svg class="glow" viewbox="0 0 512 64" preserveAspectRatio="none">
+    <defs>
+        <radialGradient id="RadialGradient1" cx="0%" cy="50%">
+            <stop offset="0%" stop-color="currentColor" />
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+        </radialGradient>
+        <radialGradient id="RadialGradient2" cx="100%" cy="50%">
+            <stop offset="0%" stop-color="currentColor" />
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+        </radialGradient>
+        <linearGradient id="Gradient2" x1="0" x2="0" y1="0" y2="1">
+            <stop offset="0%" stop-color="currentColor" stop-opacity="0" />
+            <stop offset="50%" stop-color="currentColor" />
+            <stop offset="100%" stop-color="currentColor" stop-opacity="0" />
+        </linearGradient>
+    </defs>
+
+    <rect x="-64"
+          y="0"
+          width="128"
+          height="100%"
+          fill="url(#RadialGradient2)" />
+    <rect x="320"
+          y="0"
+          width="128"
+          height="100%"
+          fill="url(#RadialGradient1)" />
+
+    <rect x="64" y="0" height="100%" width="256" fill="url(#Gradient2)"></rect>
+</svg>
