@@ -1,0 +1,11 @@
+{{define "contact_form"}}
+{{if .Success}}
+<div class="form-message form-success">
+    <p>{{.Message}}</p>
+</div>
+{{else}}
+<div class="form-message form-error">
+    <p>{{.Message}}</p>
+</div>
+{{end}}
+{{end}}

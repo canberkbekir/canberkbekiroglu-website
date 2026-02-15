@@ -1,0 +1,377 @@
+/* === Cover Grid (matches Fydar CoverGrid) === */
+.cover-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 12px;
+    margin: 12px 0;
+    padding: 0;
+}
+
+@media screen and (min-width: 768px) {
+    .cover-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+/* === CoverDate — each wraps ONE card (matches Fydar CoverDate) === */
+.cover-date-label {
+    font-size: 1.125em;
+    font-weight: 500;
+    width: 100%;
+    height: 2.25em;
+    margin-top: 1em;
+    margin-bottom: 1em;
+    padding-left: 8px;
+    box-sizing: border-box;
+    position: relative;
+    color: #8d8d8d;
+}
+
+.cover-date-label::before {
+    content: '';
+    position: absolute;
+    background-color: #ffffff25;
+    bottom: 0;
+    left: 0;
+    right: -12px;
+    height: 3px;
+}
+
+.cover-date-label:not(:empty)::after {
+    content: '';
+    position: absolute;
+    background-color: #ffffff25;
+    bottom: 3px;
+    left: 28px;
+    width: 3px;
+    height: 5px;
+}
+
+/* === Cover Card — 3D perspective hover (matches Fydar Cover) === */
+.cover-card {
+    display: block;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    perspective: 1000px;
+    perspective-origin: 50% 50%;
+    user-select: none;
+    color: white;
+}
+
+/* Shadow behind card */
+.cover-card::before {
+    display: block;
+    content: "";
+    position: absolute;
+    top: 2.5%;
+    left: 2.5%;
+    width: 95%;
+    height: 95%;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow: 0 6px 12px 12px rgba(0, 0, 0, 0.4);
+    will-change: opacity;
+    transform-origin: top center;
+    transform: skewX(.001deg);
+    transition: transform 0.65s cubic-bezier(0.18, 0.9, 0.58, 1),
+                opacity 0.65s cubic-bezier(0.18, 0.9, 0.58, 1);
+    pointer-events: none;
+}
+
+.cover-card:hover::before {
+    opacity: 0.6;
+    transform: rotateX(7deg) translateY(-6px) scale(1.0325);
+}
+
+/* === Cover Image (the 3D tilting background) === */
+.cover-image {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 6 / 9;
+    overflow: hidden;
+    background-color: #262a31;
+    background-size: cover;
+
+    transform-style: preserve-3d;
+    transform-origin: top center;
+    transform: skewX(0.001deg);
+    will-change: transform;
+    transition: transform 0.5s cubic-bezier(0.18, 0.9, 0.58, 1);
+}
+
+.cover-card:hover .cover-image {
+    transform: rotateX(7deg) translateY(-6px);
+}
+
+/* === Shared image layer setup === */
+.cover-image img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none; /* prevents hover flicker */
+}
+
+/* === Default static image === */
+.cover-img-static {
+    opacity: 1;
+    z-index: 1;
+    transition: opacity 0.3s ease;
+}
+
+/* === Hover GIF image === */
+.cover-img-hover {
+    opacity: 0;
+    z-index: 2;
+    transition: opacity 0.3s ease;
+}
+
+/* === Hover crossfade === */
+.cover-card:hover .cover-img-static {
+    opacity: 0;
+}
+
+.cover-card:hover .cover-img-hover {
+    opacity: 1;
+}
+
+@keyframes cover-fade-in {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+/* === Tags Overlay (top-right) === */
+.cover-tags {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    justify-content: flex-end;
+    z-index: 2;
+}
+
+.cover-tag {
+    display: inline-block;
+    padding: 3px 8px;
+    background: rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 3px;
+    font-size: 0.7rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    white-space: nowrap;
+    backdrop-filter: blur(4px);
+}
+
+/* === Shine Overlay (matches Fydar cover-background::after) === */
+.cover-shine {
+    display: block;
+    position: absolute;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120%;
+    background: linear-gradient(
+        210deg,
+        rgba(255, 255, 255, 0.4) 0%,
+        rgba(255, 255, 255, 0.4) 35%,
+        rgba(255, 255, 255, 0.2) 42%,
+        rgba(255, 255, 255, 0) 60%
+    );
+    transform: translateY(-25%);
+    will-change: transform;
+    transition: transform 0.65s cubic-bezier(0.18, 0.9, 0.58, 1),
+                opacity 0.65s cubic-bezier(0.18, 0.9, 0.58, 1);
+    opacity: 0.325;
+    pointer-events: none;
+}
+
+.cover-card:hover .cover-shine {
+    transform: translateY(0%);
+    opacity: 0.4;
+}
+
+/* === Cover Body === */
+.cover-body {
+    padding: 10px 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cover-title {
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.2s ease;
+}
+
+.cover-card:hover .cover-title {
+    color: var(--accent);
+}
+
+.cover-description {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.cover-category {
+    display: none;
+}
+
+/* === Pills / Tags (used in project detail) === */
+.pill {
+    display: inline-block;
+    padding: 4px 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+/* === Section Heading with Hover Animation === */
+.section-heading {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.6rem;
+    margin-bottom: 24px;
+    position: relative;
+}
+
+.section-heading::after {
+    display: none;
+}
+
+.heading-anchor {
+    display: inline-flex;
+    align-items: center;
+    color: var(--text-muted);
+    opacity: 0;
+    transform: translateX(-8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, color 0.25s ease;
+}
+
+.section-heading:hover .heading-anchor {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.heading-anchor:hover {
+    color: var(--accent);
+}
+
+.heading-hash {
+    font-weight: 400;
+    font-size: 0.9em;
+}
+
+.heading-text {
+    transition: color 0.25s ease;
+}
+
+.section-heading:hover .heading-text {
+    color: var(--text-primary);
+}
+
+.heading-line {
+    flex: 1;
+    height: 1px;
+    background: var(--border);
+    margin-left: 16px;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.5s cubic-bezier(0.18, 0.9, 0.58, 1);
+}
+
+.section-heading:hover .heading-line {
+    transform: scaleX(1);
+}
+
+/* === Project Detail === */
+.project-detail {
+    max-width: 800px;
+}
+
+.project-hero {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    margin-bottom: 32px;
+    background: var(--bg-tertiary);
+}
+
+.project-hero-image {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+}
+
+.project-title {
+    font-size: 2.5rem;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+}
+
+.project-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 16px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.project-meta span {
+    position: relative;
+}
+
+.project-meta span + span::before {
+    content: '\00b7';
+    position: absolute;
+    left: -10px;
+    color: var(--text-muted);
+}
+
+.project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+}
+
+.project-body {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: var(--text-secondary);
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    .project-title {
+        font-size: 1.8rem;
+    }
+
+    .project-meta {
+        gap: 8px;
+    }
+
+    .heading-anchor {
+        opacity: 1;
+        transform: translateX(0);
+    }
+
+    .heading-line {
+        display: none;
+    }
+}

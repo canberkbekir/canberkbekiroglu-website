@@ -1,0 +1,154 @@
+/* === Resume Layout === */
+.resume-layout {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    gap: 64px;
+    align-items: start;
+}
+
+.resume-section-title {
+    font-size: 1.3rem;
+    font-weight: 600;
+    margin-bottom: 24px;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    font-size: 0.85rem;
+}
+
+/* === Timeline === */
+.timeline {
+    position: relative;
+    padding-left: 32px;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: var(--border);
+}
+
+.timeline-entry {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.timeline-entry:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-marker {
+    position: absolute;
+    left: -32px;
+    top: 6px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: var(--bg-primary);
+    border: 2px solid var(--accent);
+    z-index: 1;
+}
+
+.timeline-content {
+    padding-bottom: 8px;
+}
+
+.timeline-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 4px;
+    gap: 16px;
+}
+
+.timeline-role {
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.timeline-period {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    white-space: nowrap;
+}
+
+.timeline-company {
+    font-size: 0.95rem;
+    color: var(--accent);
+    margin-bottom: 8px;
+}
+
+.timeline-description {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* === Skills === */
+.skill-group {
+    margin-bottom: 20px;
+}
+
+.skill-category {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--text-secondary);
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+}
+
+/* === Print === */
+@media print {
+    .site-nav,
+    .site-footer {
+        display: none;
+    }
+
+    body {
+        background: white;
+        color: #222;
+    }
+
+    .resume-layout {
+        grid-template-columns: 1fr 280px;
+        gap: 40px;
+    }
+
+    .timeline-marker {
+        border-color: #333;
+    }
+
+    .timeline::before {
+        background: #ccc;
+    }
+
+    .pill {
+        background: #f0f0f0;
+        border-color: #ddd;
+        color: #333;
+    }
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+    .resume-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+    }
+
+    .timeline-header {
+        flex-direction: column;
+        gap: 2px;
+    }
+}

@@ -1,0 +1,33 @@
+{{define "content"}}
+<section class="section">
+    <a href="/" class="back-link">&larr; Back to Portfolio</a>
+
+    <article class="project-detail">
+        <div class="project-hero">
+            <img src="{{.Project.Image}}" alt="{{.Project.Title}}" class="project-hero-image">
+        </div>
+
+        <h1 class="project-title">{{.Project.Title}}</h1>
+
+        <div class="project-meta">
+            <span class="project-company">{{.Project.Company}}</span>
+            <span class="project-role">{{.Project.Role}}</span>
+            <span class="project-date">{{.Project.Year}}</span>
+        </div>
+
+        <div class="project-tags">
+            {{range .Project.Tags}}
+            <span class="pill">{{.}}</span>
+            {{end}}
+        </div>
+
+        <div class="project-body">
+            {{if .Content}}
+            {{.Content}}
+            {{else}}
+            <p>{{.Project.Description}}</p>
+            {{end}}
+        </div>
+    </article>
+</section>
+{{end}}

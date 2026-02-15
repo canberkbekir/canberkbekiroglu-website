@@ -1,0 +1,12 @@
+{{define "card_grid"}}
+<div class="cover-grid">
+    {{range $group := .}}
+    {{range $i, $p := $group.Projects}}
+    <div class="cover-date">
+        <p class="cover-date-label">{{- if eq $i 0}}{{$group.Year}}{{end -}}</p>
+        {{template "card" $p}}
+    </div>
+    {{end}}
+    {{end}}
+</div>
+{{end}}

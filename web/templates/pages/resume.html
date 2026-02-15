@@ -1,0 +1,44 @@
+{{define "head"}}
+<link rel="stylesheet" href="/static/css/resume.css">
+{{end}}
+
+{{define "content"}}
+<section class="section">
+    <h1 class="section-heading">Resume</h1>
+
+    <div class="resume-layout">
+        <div class="resume-main">
+            <h2 class="resume-section-title">Experience</h2>
+            <div class="timeline">
+                {{range .Experience}}
+                <div class="timeline-entry">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h3 class="timeline-role">{{.Role}}</h3>
+                            <span class="timeline-period">{{.Period}}</span>
+                        </div>
+                        <p class="timeline-company">{{.Company}}</p>
+                        <p class="timeline-description">{{.Description}}</p>
+                    </div>
+                </div>
+                {{end}}
+            </div>
+        </div>
+
+        <aside class="resume-sidebar">
+            <h2 class="resume-section-title">Skills</h2>
+            {{range .Skills}}
+            <div class="skill-group">
+                <h3 class="skill-category">{{.Category}}</h3>
+                <div class="skill-items">
+                    {{range .Items}}
+                    <span class="pill">{{.}}</span>
+                    {{end}}
+                </div>
+            </div>
+            {{end}}
+        </aside>
+    </div>
+</section>
+{{end}}

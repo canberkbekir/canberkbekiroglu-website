@@ -1,0 +1,19 @@
+{{define "card"}}
+<a href="{{.LinkURL}}" {{if .IsExternal}}target="_blank" rel="noopener noreferrer"{{end}} class="cover-card">
+    <div class="cover-image">
+        <img src="{{.Image}}" alt="{{.Title}}" loading="lazy" class="cover-img-static">
+        {{if .HoverImage}}
+        <img src="{{.HoverImage}}" alt="{{.Title}} preview" loading="lazy" class="cover-img-hover">
+        {{end}}
+        <div class="cover-tags">
+            {{range .Tags}}<span class="cover-tag">{{.}}</span>{{end}}
+        </div>
+        <div class="cover-shine"></div>
+    </div>
+    <div class="cover-body">
+        <h3 class="cover-title">{{.Title}}</h3>
+        <p class="cover-description">{{.Description}}</p>
+        {{if .Category}}<span class="cover-category">{{.Category}}</span>{{end}}
+    </div>
+</a>
+{{end}}

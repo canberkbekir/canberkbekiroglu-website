@@ -1,0 +1,130 @@
+{
+  "sections": [
+    {
+      "name": "Titles",
+      "slug": "titles",
+      "projects": [
+        {
+          "title": "Killwats League",
+          "slug": "killwats-league",
+          "year": 2025,
+          "image": "/static/media/killwats-header.png",
+          "hoverImage": "/static/media/gifs/killwats.gif",
+          "tags": ["Unreal Engine","Multiplayer", "Nominee: Best Multiplayer"],
+          "description": "Fast-paced 1v1 sports game with dynamic cameras and arcade ball physics",
+          "category": "Game Development",
+          "company": "Futuregames Warsaw",
+          "role": "Gameplay Developer"
+        },
+        {
+          "title": "HuskyNet Dashboard",
+          "slug": "huskynet",
+          "year": 2023,
+          "image": "/static/media/huskynet-header.png",
+          "hoverImage": "/static/media/huskynet-preview.gif",
+          "tags": ["Go", "React", "WebSocket"],
+          "description": "A real-time network monitoring dashboard with interactive graphs and alerting capabilities.",
+          "category": "Web Development",
+          "company": "Personal Project",
+          "role": "Full Stack Developer"
+        },
+        {
+          "title": "Radient",
+          "slug": "radient",
+          "year": 2023,
+          "image": "/static/media/radient-header.png",
+          "hoverImage": "/static/media/radient-preview.gif",
+          "tags": ["Unity", "C#", "Game Design"],
+          "description": "A vibrant arcade-style game with dynamic lighting and fast-paced gameplay mechanics.",
+          "category": "Game Development",
+          "company": "Personal Project",
+          "role": "Solo Developer"
+        },
+        {
+          "title": "Phasmophobia",
+          "slug": "phasmophobia",
+          "year": 2021,
+          "image": "/static/media/header.webp",
+          "hoverImage": "/static/media/phasmophobia-preview.gif",
+          "tags": ["Unity", "C#", "Networking"],
+          "description": "Contributed to the cooperative horror game that became a viral sensation on Steam and Twitch.",
+          "category": "Game Development",
+          "company": "Kinetic Games",
+          "role": "Game Programmer"
+        }
+      ]
+    },
+    {
+      "name": "Systems Engineer",
+      "slug": "systems-engineer",
+      "projects": [
+        {
+          "title": "Star Citizen",
+          "slug": "starcitizen",
+          "year": 2023,
+          "image": "/static/media/header.webp",
+          "hoverImage": "/static/media/starcitizen-preview.gif",
+          "tags": ["C++", "Game Dev", "Multiplayer"],
+          "description": "Contributed to the development of Star Citizen, a massively multiplayer online space simulation game.",
+          "category": "Game Development",
+          "company": "Cloud Imperium Games",
+          "role": "Software Engineer"
+        }
+      ]
+    },
+    {
+      "name": "Gameplay Programmer",
+      "slug": "gameplay-programmer",
+      "projects": [
+        {
+          "title": "Phasmophobia",
+          "slug": "phasmophobia",
+          "year": 2021,
+          "image": "/static/media/header.webp",
+          "hoverImage": "/static/media/phasmophobia-preview.gif",
+          "tags": ["Unity", "C#", "Networking"],
+          "description": "Contributed to the cooperative horror game that became a viral sensation on Steam and Twitch.",
+          "category": "Game Development",
+          "company": "Kinetic Games",
+          "role": "Game Programmer"
+        }
+      ]
+    },
+    {
+      "name": "Backend Engineer",
+      "slug": "backend-engineer",
+      "projects": [
+        {
+          "title": "HuskyNet Dashboard",
+          "slug": "huskynet",
+          "year": 2023,
+          "image": "/static/media/huskynet-header.png",
+          "hoverImage": "/static/media/huskynet-preview.gif",
+          "tags": ["Go", "React", "WebSocket"],
+          "description": "A real-time network monitoring dashboard with interactive graphs and alerting capabilities.",
+          "category": "Web Development",
+          "company": "Personal Project",
+          "role": "Full Stack Developer"
+        }
+      ]
+    },
+    {
+      "name": "Tools Programming",
+      "slug": "tools-programming",
+      "projects": [
+        {
+          "title": "Radient",
+          "slug": "radient",
+          "year": 2022,
+          "image": "/static/media/radient-header.png",
+          "hoverImage": "/static/media/radient-preview.gif",
+          "tags": ["Unity", "C#", "Game Design"],
+          "description": "A vibrant arcade-style game with dynamic lighting and fast-paced gameplay mechanics.",
+          "category": "Game Development",
+          "company": "Personal Project",
+          "role": "Solo Developer"
+        }
+      ]
+    }
+  ]
+}
