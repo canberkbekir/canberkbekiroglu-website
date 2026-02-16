@@ -14,7 +14,9 @@
           "description": "Fast-paced 1v1 sports game with dynamic cameras and arcade ball physics",
           "category": "Game Development",
           "company": "Futuregames Warsaw",
-          "role": "Gameplay Developer"
+          "role": "Gameplay Developer",
+          "highlighted": true,
+          "filterTags": ["highlighted", "games", "awards"]
         },
         {
           "title": "HuskyNet Dashboard",
@@ -26,7 +28,9 @@
           "description": "A real-time network monitoring dashboard with interactive graphs and alerting capabilities.",
           "category": "Web Development",
           "company": "Personal Project",
-          "role": "Full Stack Developer"
+          "role": "Full Stack Developer",
+          "highlighted": true,
+          "filterTags": ["highlighted", "web"]
         },
         {
           "title": "Radient",
@@ -38,7 +42,9 @@
           "description": "A vibrant arcade-style game with dynamic lighting and fast-paced gameplay mechanics.",
           "category": "Game Development",
           "company": "Personal Project",
-          "role": "Solo Developer"
+          "role": "Solo Developer",
+          "highlighted": false,
+          "filterTags": ["games", "windows"]
         },
         {
           "title": "Phasmophobia",
@@ -50,7 +56,9 @@
           "description": "Contributed to the cooperative horror game that became a viral sensation on Steam and Twitch.",
           "category": "Game Development",
           "company": "Kinetic Games",
-          "role": "Game Programmer"
+          "role": "Game Programmer",
+          "highlighted": true,
+          "filterTags": ["highlighted", "games", "windows"]
         }
       ]
     },
@@ -68,7 +76,9 @@
           "description": "Contributed to the development of Star Citizen, a massively multiplayer online space simulation game.",
           "category": "Game Development",
           "company": "Cloud Imperium Games",
-          "role": "Software Engineer"
+          "role": "Software Engineer",
+          "highlighted": true,
+          "filterTags": ["highlighted", "games", "windows"]
         }
       ]
     },
@@ -86,7 +96,9 @@
           "description": "Contributed to the cooperative horror game that became a viral sensation on Steam and Twitch.",
           "category": "Game Development",
           "company": "Kinetic Games",
-          "role": "Game Programmer"
+          "role": "Game Programmer",
+          "highlighted": true,
+          "filterTags": ["highlighted", "games", "windows"]
         }
       ]
     },
@@ -104,7 +116,9 @@
           "description": "A real-time network monitoring dashboard with interactive graphs and alerting capabilities.",
           "category": "Web Development",
           "company": "Personal Project",
-          "role": "Full Stack Developer"
+          "role": "Full Stack Developer",
+          "highlighted": true,
+          "filterTags": ["highlighted", "web"]
         }
       ]
     },
@@ -122,7 +136,9 @@
           "description": "A vibrant arcade-style game with dynamic lighting and fast-paced gameplay mechanics.",
           "category": "Game Development",
           "company": "Personal Project",
-          "role": "Solo Developer"
+          "role": "Solo Developer",
+          "highlighted": false,
+          "filterTags": ["games", "windows"]
         }
       ]
     }

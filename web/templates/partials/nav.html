@@ -7,9 +7,9 @@
                 <span class="nav-logo-text">Canberk</span>
             </a>
             <ul class="nav-links">
-                <li><a href="/" class="nav-link active">Portfolio</a></li>
-                <li><a href="/resume" class="nav-link">Resume</a></li>
-                <li><a href="/contact" class="nav-link">Contact</a></li>
+                <li><a href="/" class="nav-link{{if eq .Title "Portfolio"}} active{{end}}">Portfolio</a></li>
+                <li><a href="/resume" class="nav-link{{if eq .Title "Resume"}} active{{end}}">Resume</a></li>
+                <li><a href="/contact" class="nav-link{{if eq .Title "Contact"}} active{{end}}">Contact</a></li>
             </ul>
         </div>
         <div class="nav-right">

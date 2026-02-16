@@ -34,6 +34,15 @@ func templateFuncs() template.FuncMap {
 			}
 			return s
 		},
+		"containsAny": func(s string, substrs ...string) bool {
+			low := strings.ToLower(s)
+			for _, sub := range substrs {
+				if strings.Contains(low, strings.ToLower(sub)) {
+					return true
+				}
+			}
+			return false
+		},
 	}
 }
 

@@ -223,8 +223,28 @@
     overflow: hidden;
 }
 
+/* === Cover Category (visible) === */
 .cover-category {
-    display: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    margin-top: 4px;
+}
+
+.cover-category span {
+    color: var(--accent);
+}
+
+.cover-category-icon {
+    opacity: 0.5;
+    flex-shrink: 0;
+}
+
+.cover-external-icon {
+    margin-left: auto;
+    opacity: 0.4;
 }
 
 /* === Pills / Tags (used in project detail) === */
@@ -356,6 +376,58 @@
     color: var(--text-secondary);
 }
 
+/* === Award/Nominee Tag === */
+.cover-tag--award {
+    background: rgba(234, 179, 8, 0.2);
+    border-color: rgba(234, 179, 8, 0.4);
+    color: #eab308;
+}
+
+/* === Filter Buttons === */
+.filter-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+
+.filter-btn {
+    padding: 6px 16px;
+    border-radius: 6px;
+    font-size: 0.7rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-muted);
+    font-family: inherit;
+    transition: all 0.2s;
+}
+
+.filter-btn:hover {
+    border-color: var(--text-secondary);
+    color: var(--text-primary);
+}
+
+.filter-btn.active {
+    background: rgba(196, 160, 255, 0.12);
+    border-color: rgba(196, 160, 255, 0.4);
+    color: #c4a0ff;
+}
+
+.filter-btn--gold.active {
+    background: rgba(234, 179, 8, 0.12);
+    border-color: rgba(234, 179, 8, 0.4);
+    color: #eab308;
+}
+
+/* === Card visibility for filtering === */
+.cover-date[data-filters].filter-hidden {
+    display: none;
+}
+
 /* === Responsive === */
 @media (max-width: 768px) {
     .project-title {
@@ -373,5 +445,14 @@
 
     .heading-line {
         display: none;
+    }
+
+    .filter-bar {
+        gap: 6px;
+    }
+
+    .filter-btn {
+        padding: 5px 12px;
+        font-size: 0.65rem;
     }
 }

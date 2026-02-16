@@ -19,32 +19,92 @@
                 </div>
             </div>
 
-            <nav class="toc-nav">
-                {{range .Sections}}
-                <div class="toc-section">
-                    <p class="toc-heading">{{upper .Name}}</p>
-                    {{range .YearGroups}}
-                    {{range .Projects}}
-                    <a href="#{{.Slug}}" class="toc-link">{{.Title}}</a>
-                    {{end}}
-                    {{end}}
-                </div>
-                {{end}}
+            <nav class="sidebar-nav">
+                <a href="#inventory" class="sidebar-nav-item active" data-section="inventory">
+                    <svg class="sidebar-nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+                    <span>INVENTORY</span>
+                </a>
+                <a href="#overview" class="sidebar-nav-item" data-section="overview">
+                    <svg class="sidebar-nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                    <span>OVERVIEW</span>
+                </a>
+                <a href="#arcade" class="sidebar-nav-item" data-section="arcade">
+                    <svg class="sidebar-nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><circle cx="17" cy="10" r="1"/><circle cx="15" cy="13" r="1"/></svg>
+                    <span>ARCADE</span>
+                </a>
+                <a href="#career-log" class="sidebar-nav-item" data-section="career-log">
+                    <svg class="sidebar-nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                    <span>CAREER LOG</span>
+                </a>
+                <a href="#stats" class="sidebar-nav-item" data-section="stats">
+                    <svg class="sidebar-nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+                    <span>STATS</span>
+                </a>
+                <a href="#more" class="sidebar-nav-item" data-section="more">
+                    <svg class="sidebar-nav-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="1"/><circle cx="19" cy="12" r="1"/><circle cx="5" cy="12" r="1"/></svg>
+                    <span>MORE</span>
+                </a>
             </nav>
         </div>
     </aside>
 
     <div class="portfolio-content">
-        {{range .Sections}}
-        <section class="section" id="{{.Slug}}">
-            <h2 class="section-heading" id="heading-{{.Slug}}">
-                <a href="#{{.Slug}}" class="heading-anchor"><span class="heading-hash">#</span></a>
-                <span class="heading-text">{{.Name}}</span>
-                <span class="heading-line"></span>
-            </h2>
-            {{template "card_grid" .YearGroups}}
+        <section class="section" id="inventory">
+            <p class="section-label"><span class="section-label-dash"></span> PROJECTS</p>
+            <h2 class="section-heading-large">INVENTORY</h2>
+
+            <div class="filter-bar">
+                <button class="filter-btn filter-btn--gold active" data-filter="highlighted">HIGHLIGHTED</button>
+                <button class="filter-btn filter-btn--gold" data-filter="awards">AWARDS &amp; NOMINEES</button>
+                <button class="filter-btn" data-filter="all">ALL</button>
+                <button class="filter-btn" data-filter="games">GAMES</button>
+                <button class="filter-btn" data-filter="web">WEB</button>
+                <button class="filter-btn" data-filter="android">ANDROID</button>
+                <button class="filter-btn" data-filter="windows">WINDOWS</button>
+                <button class="filter-btn" data-filter="others">OTHERS</button>
+            </div>
+
+            <div class="cover-grid">
+                {{range $group := .YearGroups}}
+                {{range $i, $p := $group.Projects}}
+                <div class="cover-date" data-filters="{{$p.FilterTagsCSV}}">
+                    <p class="cover-date-label">{{- if eq $i 0}}{{$group.Year}}{{end -}}</p>
+                    {{template "card" $p}}
+                </div>
+                {{end}}
+                {{end}}
+            </div>
         </section>
-        {{end}}
+
+        <section class="section" id="overview">
+            <p class="section-label"><span class="section-label-dash"></span> ABOUT</p>
+            <h2 class="section-heading-large">OVERVIEW</h2>
+            <p class="section-placeholder">Overview content coming soon.</p>
+        </section>
+
+        <section class="section" id="arcade">
+            <p class="section-label"><span class="section-label-dash"></span> PLAY</p>
+            <h2 class="section-heading-large">ARCADE</h2>
+            <p class="section-placeholder">Arcade content coming soon.</p>
+        </section>
+
+        <section class="section" id="career-log">
+            <p class="section-label"><span class="section-label-dash"></span> EXPERIENCE</p>
+            <h2 class="section-heading-large">CAREER LOG</h2>
+            <p class="section-placeholder">Career log coming soon.</p>
+        </section>
+
+        <section class="section" id="stats">
+            <p class="section-label"><span class="section-label-dash"></span> DATA</p>
+            <h2 class="section-heading-large">STATS</h2>
+            <p class="section-placeholder">Stats content coming soon.</p>
+        </section>
+
+        <section class="section" id="more">
+            <p class="section-label"><span class="section-label-dash"></span> EXTRA</p>
+            <h2 class="section-heading-large">MORE</h2>
+            <p class="section-placeholder">More content coming soon.</p>
+        </section>
     </div>
 </div>
 {{end}}

@@ -25,24 +25,9 @@ func NewPages(r *templates.Renderer, data *models.PortfolioData, contentDir stri
 
 // HandleHome renders the portfolio home page.
 func (p *Pages) HandleHome(w http.ResponseWriter, r *http.Request) {
-	// Build year groups for each section
-	type SectionData struct {
-		Name       string
-		Slug       string
-		YearGroups []models.YearGroup
-	}
-	sections := make([]SectionData, len(p.data.Sections))
-	for i, s := range p.data.Sections {
-		sections[i] = SectionData{
-			Name:       s.Name,
-			Slug:       s.Slug,
-			YearGroups: models.GroupByYear(s.Projects),
-		}
-	}
-
 	data := map[string]any{
-		"Title":    "Portfolio",
-		"Sections": sections,
+		"Title":      "Portfolio",
+		"YearGroups": models.GroupByYear(p.data.AllProjects()),
 	}
 	if err := p.renderer.Render(w, "home", data); err != nil {
 		http.Error(w, "Error rendering page", http.StatusInternalServerError)
@@ -52,9 +37,7 @@ func (p *Pages) HandleHome(w http.ResponseWriter, r *http.Request) {
 // HandleResume renders the resume page.
 func (p *Pages) HandleResume(w http.ResponseWriter, r *http.Request) {
 	data := map[string]any{
-		"Title":      "Resume",
-		"Experience": models.SampleResumeEntries(),
-		"Skills":     models.SampleSkills(),
+		"Title": "Resume",
 	}
 	if err := p.renderer.Render(w, "resume", data); err != nil {
 		http.Error(w, "Error rendering page", http.StatusInternalServerError)

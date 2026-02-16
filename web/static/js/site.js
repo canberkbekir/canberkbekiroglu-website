@@ -85,14 +85,73 @@ function navHighlighter() {
     }, { passive: true });
 })();
 
+// === Project Filter Logic ===
+function initFilters() {
+    var filterBtns = document.querySelectorAll('.filter-btn');
+    var cards = document.querySelectorAll('.cover-date[data-filters]');
+
+    if (!filterBtns.length) return;
+
+    function applyFilter(filterValue) {
+        cards.forEach(function(card) {
+            var filters = card.getAttribute('data-filters').split(',');
+            if (filterValue === 'all') {
+                card.classList.remove('filter-hidden');
+            } else {
+                if (filters.indexOf(filterValue) !== -1) {
+                    card.classList.remove('filter-hidden');
+                } else {
+                    card.classList.add('filter-hidden');
+                }
+            }
+        });
+    }
+
+    filterBtns.forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            filterBtns.forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            applyFilter(btn.getAttribute('data-filter'));
+        });
+    });
+
+    // Apply default filter (highlighted)
+    applyFilter('highlighted');
+}
+
+// === Sidebar Nav Highlighting ===
+function sidebarNavHighlighter() {
+    var sections = document.querySelectorAll('.portfolio-content section[id]');
+    var navItems = document.querySelectorAll('.sidebar-nav-item');
+    var scrollY = window.scrollY;
+
+    sections.forEach(function(section) {
+        var sectionHeight = section.offsetHeight;
+        var sectionTop = section.getBoundingClientRect().top + scrollY - 120;
+        var sectionId = section.getAttribute('id');
+
+        navItems.forEach(function(item) {
+            if (item.getAttribute('data-section') === sectionId) {
+                if (scrollY > sectionTop && scrollY <= sectionTop + sectionHeight) {
+                    item.classList.add('active');
+                } else {
+                    item.classList.remove('active');
+                }
+            }
+        });
+    });
+}
+
 // === Initialize ===
 updateParallaxLayerSize();
 updateRelativeElements();
 navHighlighter();
+initFilters();
 
 window.addEventListener("scroll", function () {
     updateRelativeElements();
     navHighlighter();
+    sidebarNavHighlighter();
 }, { passive: true });
 
 window.addEventListener("resize", function () {

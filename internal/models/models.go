@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"os"
 	"sort"
+	"strings"
 )
 
 // Project represents a portfolio project.
@@ -20,6 +21,8 @@ type Project struct {
 	Company     string   `json:"company"`
 	Role        string   `json:"role"`
 	ExternalURL string   `json:"externalUrl,omitempty"`
+	Highlighted bool     `json:"highlighted,omitempty"`
+	FilterTags  []string `json:"filterTags,omitempty"`
 }
 
 // LinkURL returns the URL the card should link to.
@@ -77,6 +80,26 @@ type PortfolioData struct {
 	Sections []Section `json:"sections"`
 }
 
+// AllProjects returns a flat, deduplicated list of all projects across sections.
+func (pd *PortfolioData) AllProjects() []Project {
+	seen := make(map[string]bool)
+	var result []Project
+	for _, s := range pd.Sections {
+		for _, p := range s.Projects {
+			if !seen[p.Slug] {
+				seen[p.Slug] = true
+				result = append(result, p)
+			}
+		}
+	}
+	return result
+}
+
+// FilterTagsCSV returns the project's filter tags as a comma-separated string.
+func (p Project) FilterTagsCSV() string {
+	return strings.Join(p.FilterTags, ",")
+}
+
 // LoadPortfolioData reads and unmarshals portfolio data from a JSON file.
 func LoadPortfolioData(path string) (*PortfolioData, error) {
 	data, err := os.ReadFile(path)
@@ -119,39 +142,3 @@ func GroupByYear(projects []Project) []YearGroup {
 	return groups
 }
 
-// SampleResumeEntries returns hardcoded resume data for the demo.
-func SampleResumeEntries() []ResumeEntry {
-	return []ResumeEntry{
-		{
-			Company:     "Cloud Imperium Games",
-			Role:        "Software Engineer",
-			Period:      "2022 — Present",
-			Description: "Working on Star Citizen, contributing to engine systems, gameplay features, and multiplayer infrastructure for one of the most ambitious games in development.",
-			Logo:        "",
-		},
-		{
-			Company:     "Kinetic Games",
-			Role:        "Game Programmer",
-			Period:      "2020 — 2022",
-			Description: "Developed gameplay systems and networking code for Phasmophobia, helping scale the game from indie project to millions of concurrent players.",
-			Logo:        "",
-		},
-		{
-			Company:     "Freelance",
-			Role:        "Full Stack Developer",
-			Period:      "2018 — 2020",
-			Description: "Built web applications, tools, and interactive experiences for various clients. Specialized in real-time applications and data visualization.",
-			Logo:        "",
-		},
-	}
-}
-
-// SampleSkills returns hardcoded skills data for the demo.
-func SampleSkills() []Skill {
-	return []Skill{
-		{Category: "Languages", Items: []string{"Go", "C#", "C++", "TypeScript", "Python"}},
-		{Category: "Frameworks", Items: []string{"Chi", "Unity", "Unreal Engine", "React", ".NET"}},
-		{Category: "Tools", Items: []string{"Git", "Docker", "Linux", "CI/CD", "PostgreSQL"}},
-		{Category: "Domains", Items: []string{"Game Development", "Web Development", "Networking", "Systems Programming"}},
-	}
-}

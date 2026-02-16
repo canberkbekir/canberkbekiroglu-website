@@ -37,6 +37,55 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+/* === Grid Background + Cursor Glow === */
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 48px 48px;
+    -webkit-mask-image: radial-gradient(
+        500px circle at var(--pointer-fixed, -1000px -1000px),
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.02) 100%
+    );
+    mask-image: radial-gradient(
+        500px circle at var(--pointer-fixed, -1000px -1000px),
+        rgba(0, 0, 0, 0.7) 0%,
+        rgba(0, 0, 0, 0.1) 50%,
+        rgba(0, 0, 0, 0.02) 100%
+    );
+}
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: radial-gradient(
+        600px circle at var(--pointer-fixed, -1000px -1000px),
+        rgba(226, 179, 132, 0.04) 0%,
+        rgba(196, 160, 255, 0.02) 40%,
+        transparent 70%
+    );
+    transition: opacity 0.3s;
+}
+
+body.pointer-none::after {
+    opacity: 0;
+}
+
+body > *, body > main, body > nav, body > footer {
+    position: relative;
+    z-index: 1;
+}
+
 ::selection {
     background: var(--accent);
     color: var(--bg-primary);
@@ -319,71 +368,78 @@ main {
     filter: drop-shadow(0 0 1px #ffffff60) drop-shadow(0 0 6px var(--accent));
 }
 
-/* === TOC Navigation (matches Fydar TableOfContents) === */
-.toc-nav {
+/* === Sidebar Navigation === */
+.sidebar-nav {
     display: none;
-}
-
-.toc-section {
-    display: flex;
     flex-direction: column;
+    gap: 2px;
 }
 
-.toc-heading {
+.sidebar-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px;
+    border-radius: 8px;
+    color: var(--text-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: color 0.2s, background 0.2s;
+}
+
+.sidebar-nav-item:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.sidebar-nav-item.active {
+    color: #c4a0ff;
+    background: rgba(196, 160, 255, 0.08);
+}
+
+.sidebar-nav-icon {
+    flex-shrink: 0;
+    opacity: 0.7;
+}
+
+.sidebar-nav-item.active .sidebar-nav-icon {
+    opacity: 1;
+    color: #c4a0ff;
+}
+
+/* === Section Labels & Large Headings === */
+.section-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
     font-size: 0.75rem;
     font-weight: 600;
-    color: var(--text-secondary);
-    letter-spacing: 0.08em;
+    color: var(--accent);
+    letter-spacing: 0.15em;
     text-transform: uppercase;
-    margin-bottom: 8px;
+    margin-bottom: 4px;
 }
 
-.toc-link {
+.section-label-dash {
     display: inline-block;
-    align-content: center;
-    text-decoration: none;
-    height: 3em;
-    width: 100%;
-    color: #808080;
-    font-size: 1.0625em;
-    font-weight: 400;
-    letter-spacing: 0.25px;
-    white-space: nowrap;
-    transition: color 0.25s ease-out;
-}
-
-.toc-link::before {
-    content: "";
-    display: inline-block;
-    width: 1em;
-    margin-right: 0.75em;
+    width: 20px;
     height: 2px;
-    vertical-align: middle;
-    background-color: currentColor;
-    transition: width 0.25s ease-out;
+    background: var(--accent);
 }
 
-.toc-nav:has(:hover) .toc-link,
-.toc-nav:has(:focus-visible) .toc-link {
-    color: #666;
+.section-heading-large {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin-bottom: 24px;
 }
 
-.toc-link:hover,
-.toc-link:focus-visible {
-    color: #d8d8d8;
-}
-
-.toc-link:hover::before,
-.toc-link:focus-visible::before {
-    width: 3em;
-}
-
-.toc-link.active {
-    color: currentColor;
-}
-
-.toc-link.active::before {
-    width: 3em;
+.section-placeholder {
+    color: var(--text-muted);
+    font-size: 0.95rem;
 }
 
 /* === Portfolio Content (right column) === */
@@ -559,6 +615,12 @@ main {
 
 /* Low-Resolution Desktop >= 992px: Two-column centered layout */
 @media (min-width: 992px) {
+    .nav-inner {
+        max-width: 896px;
+        margin: 0 auto;
+        padding: 0;
+    }
+
     .portfolio-layout {
         max-width: 896px;
         margin: 0 auto;
@@ -584,10 +646,8 @@ main {
         overflow-x: clip;
     }
 
-    .toc-nav {
+    .sidebar-nav {
         display: flex;
-        flex-direction: column;
-        gap: 24px;
     }
 
     .section {
@@ -597,6 +657,10 @@ main {
 
 /* Desktop >= 1200px */
 @media (min-width: 1200px) {
+    .nav-inner {
+        max-width: 1104px;
+    }
+
     .portfolio-layout {
         max-width: 1104px;
         grid-template-columns: 350px 32px 1fr;
@@ -605,6 +669,10 @@ main {
 
 /* Full-screen Desktop >= 1400px */
 @media (min-width: 1400px) {
+    .nav-inner {
+        max-width: 1304px;
+    }
+
     .portfolio-layout {
         max-width: 1304px;
         grid-template-columns: 410px 32px 1fr;
