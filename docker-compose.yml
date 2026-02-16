@@ -1,0 +1,17 @@
+services:
+  web:
+    build: .
+    ports:
+      - "8080:8080"
+    env_file:
+      - .env
+    volumes:
+      # DBs persist here — survives image rebuilds and redeploys
+      - app-data:/app/data
+      # If you update media files on the server, they persist too
+      - app-media:/app/web/static/media
+    restart: unless-stopped
+
+volumes:
+  app-data:
+  app-media:

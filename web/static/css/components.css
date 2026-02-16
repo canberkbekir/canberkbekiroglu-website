@@ -477,23 +477,28 @@
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    padding: 10px 20px;
-    border: 1px solid #eab308;
-    border-radius: 4px;
-    background: rgba(234, 179, 8, 0.06);
-    color: #eab308;
+
+    padding: 11px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 6px;
+
+    background: rgba(255, 255, 255, 0.03);
+    color: rgba(255, 255, 255, 0.88);
+
     font-size: 0.75rem;
-    font-weight: 700;
-    letter-spacing: 0.1em;
+    font-weight: 800;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
     text-decoration: none;
-    transition: background 0.2s, color 0.2s;
+
+    transition: all 0.2s ease;
 }
 
 .career-cv-btn:hover {
-    background: rgba(234, 179, 8, 0.15);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.4);
+    color: #ffffff;
 }
-
 .career-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -524,7 +529,8 @@
 .career-company-logo {
     width: 48px;
     height: 48px;
-    border-radius: 10px;
+    border-radius: 50%;
+    overflow: hidden;
     background: #2a2a2e;
     border: 1px solid rgba(255, 255, 255, 0.08);
     display: flex;
@@ -702,19 +708,27 @@ a.edu-card:hover {
 }
 
 .edu-card-logo {
-    width: 48px;
-    height: 48px;
-    border-radius: 10px;
-    background: #2a2a2e;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    width: 56px;
+    height: 56px;
+    border-radius: 12px;
+
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.10);
+
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 0.7rem;
-    font-weight: 700;
-    color: var(--text-muted);
+
+    overflow: hidden; /* VERY IMPORTANT */
     flex-shrink: 0;
-    letter-spacing: 0.05em;
+}
+
+/* logo images */
+.edu-card-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;   /* fills nicely */
+    display: block;
 }
 
 .edu-card-name {

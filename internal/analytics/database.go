@@ -60,6 +60,11 @@ func NewDB(path string) (*DB, error) {
 		return nil, err
 	}
 
+	// SQLite only supports one writer at a time. Limiting to a single open
+	// connection serialises writes from concurrent goroutines and prevents
+	// "database is locked" errors.
+	conn.SetMaxOpenConns(1)
+
 	// Enable WAL mode and foreign keys.
 	if _, err := conn.Exec("PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON;"); err != nil {
 		conn.Close()
