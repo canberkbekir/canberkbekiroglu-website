@@ -45,20 +45,20 @@ body::before {
     z-index: 0;
     pointer-events: none;
     background-image:
-        linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+        linear-gradient(rgba(255, 255, 255, 0.25) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.25) 1px, transparent 1px);
     background-size: 48px 48px;
     -webkit-mask-image: radial-gradient(
-        500px circle at var(--pointer-fixed, -1000px -1000px),
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.1) 50%,
-        rgba(0, 0, 0, 0.02) 100%
+        900px circle at var(--pointer-fixed, -1000px -1000px),
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0.6) 40%,
+        rgba(0, 0, 0, 0.1) 100%
     );
     mask-image: radial-gradient(
-        500px circle at var(--pointer-fixed, -1000px -1000px),
-        rgba(0, 0, 0, 0.7) 0%,
-        rgba(0, 0, 0, 0.1) 50%,
-        rgba(0, 0, 0, 0.02) 100%
+        900px circle at var(--pointer-fixed, -1000px -1000px),
+        rgba(0, 0, 0, 1) 0%,
+        rgba(0, 0, 0, 0.6) 40%,
+        rgba(0, 0, 0, 0.1) 100%
     );
 }
 
@@ -520,9 +520,111 @@ main {
     margin: 0 8px;
 }
 
+/* === Contact Page Layout === */
+.contact-section {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+
+.contact-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.contact-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-intro {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.contact-submit {
+    gap: 8px;
+}
+
+.contact-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.contact-image-wrapper {
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.contact-photo {
+    width: 100%;
+    aspect-ratio: 5 / 7;
+    object-fit: cover;
+}
+
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding: 20px;
+    background: #1e1e20;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: var(--radius-lg);
+}
+
+.contact-info-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+}
+
+.contact-info-item svg {
+    flex-shrink: 0;
+    color: var(--accent);
+    opacity: 0.7;
+}
+
+.contact-info-item a {
+    color: var(--text-secondary);
+    transition: color 0.2s;
+}
+
+.contact-info-item a:hover {
+    color: var(--accent);
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+@media (max-width: 768px) {
+    .contact-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+
+    .contact-right {
+        order: -1;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* === Forms === */
 .contact-form {
-    max-width: 600px;
+    max-width: none;
 }
 
 .form-group {
@@ -566,23 +668,119 @@ main {
     min-height: 120px;
 }
 
-.form-message {
-    margin-top: 20px;
-    padding: 16px;
-    border-radius: var(--radius);
-    font-size: 0.95rem;
+/* === Toast Notifications === */
+#form-result {
+    position: fixed;
+    top: 24px;
+    right: 24px;
+    z-index: 9999;
+    pointer-events: none;
 }
 
-.form-success {
-    background: rgba(74, 222, 128, 0.1);
-    border: 1px solid rgba(74, 222, 128, 0.3);
-    color: #4ade80;
+.toast {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    min-width: 320px;
+    max-width: 440px;
+    padding: 16px 18px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    pointer-events: auto;
+    animation: toast-in 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.form-error {
-    background: rgba(248, 113, 113, 0.1);
-    border: 1px solid rgba(248, 113, 113, 0.3);
-    color: #f87171;
+.toast--success {
+    background: rgba(22, 22, 24, 0.92);
+    border: 1px solid rgba(74, 222, 128, 0.35);
+}
+
+.toast--error {
+    background: rgba(22, 22, 24, 0.92);
+    border: 1px solid rgba(248, 113, 113, 0.35);
+}
+
+.toast-icon {
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+.toast--success .toast-icon { color: #4ade80; }
+.toast--error .toast-icon { color: #f87171; }
+
+.toast-body {
+    flex: 1;
+    min-width: 0;
+}
+
+.toast-title {
+    font-weight: 600;
+    font-size: 0.9rem;
+    margin: 0 0 2px;
+    color: #f0f0f0;
+}
+
+.toast-text {
+    margin: 0;
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: #a0a0a0;
+}
+
+.toast-close {
+    flex-shrink: 0;
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 2px;
+    margin: -2px -2px 0 0;
+    transition: color 0.2s;
+}
+
+.toast-close:hover {
+    color: #d8d8d8;
+}
+
+@keyframes toast-in {
+    from {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.toast--hiding {
+    animation: toast-out 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@keyframes toast-out {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(40px);
+    }
+}
+
+@media (max-width: 480px) {
+    #form-result {
+        top: 12px;
+        right: 12px;
+        left: 12px;
+    }
+
+    .toast {
+        min-width: 0;
+        max-width: none;
+    }
 }
 
 /* === Back Link === */

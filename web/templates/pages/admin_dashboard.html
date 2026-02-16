@@ -1,0 +1,258 @@
+{{define "admin_content"}}
+<div class="admin-page-header">
+    <h1 class="admin-page-title">Dashboard</h1>
+    <div class="admin-range-selector">
+        <button class="admin-range-btn active" data-range="7d" onclick="switchRange('7d')">7 Days</button>
+        <button class="admin-range-btn" data-range="30d" onclick="switchRange('30d')">30 Days</button>
+        <button class="admin-range-btn" data-range="90d" onclick="switchRange('90d')">90 Days</button>
+        <button class="admin-range-btn" data-range="6m" onclick="switchRange('6m')">6 Months</button>
+    </div>
+</div>
+
+<div class="admin-stats-row" id="stats-cards">
+    <div class="admin-stat-card">
+        <div class="admin-stat-value" id="stat-visitors">{{.UniqueVisitors}}</div>
+        <div class="admin-stat-label">Unique Visitors</div>
+    </div>
+    <div class="admin-stat-card">
+        <div class="admin-stat-value" id="stat-views">{{.TotalViews}}</div>
+        <div class="admin-stat-label">Page Views</div>
+    </div>
+    <div class="admin-stat-card">
+        <div class="admin-stat-value" id="stat-response">{{printf "%.0f" .AvgResponseMs}}ms</div>
+        <div class="admin-stat-label">Avg Response</div>
+    </div>
+    <div class="admin-stat-card">
+        <div class="admin-stat-value" id="stat-errors">{{printf "%.1f" .ErrorRate}}%</div>
+        <div class="admin-stat-label">Error Rate</div>
+    </div>
+</div>
+
+<div class="admin-stats-row">
+    <div class="admin-stat-card">
+        <div class="admin-stat-value" style="font-size:24px;">{{.ProjectCount}}</div>
+        <div class="admin-stat-label">Projects</div>
+    </div>
+    <div class="admin-stat-card">
+        <div class="admin-stat-value" style="font-size:24px;">{{.SectionCount}}</div>
+        <div class="admin-stat-label">Sections</div>
+    </div>
+</div>
+
+<div class="admin-charts-grid">
+    <div class="admin-chart-panel admin-chart-panel--wide">
+        <h3 class="admin-chart-title">Visitor Trend</h3>
+        <canvas id="chart-visitors" height="80"></canvas>
+    </div>
+
+    <div class="admin-chart-panel">
+        <h3 class="admin-chart-title">Popular Pages</h3>
+        <canvas id="chart-pages" height="150"></canvas>
+    </div>
+
+    <div class="admin-chart-panel">
+        <h3 class="admin-chart-title">Status Codes</h3>
+        <canvas id="chart-status" height="150"></canvas>
+    </div>
+
+    <div class="admin-chart-panel admin-chart-panel--wide">
+        <h3 class="admin-chart-title">Response Time (ms)</h3>
+        <canvas id="chart-response" height="80"></canvas>
+    </div>
+
+    <div class="admin-chart-panel">
+        <h3 class="admin-chart-title">Traffic by Hour</h3>
+        <canvas id="chart-hourly" height="150"></canvas>
+    </div>
+
+    <div class="admin-chart-panel">
+        <h3 class="admin-chart-title">Geographic Distribution</h3>
+        <div id="geo-table"></div>
+    </div>
+
+    <div class="admin-chart-panel admin-chart-panel--wide">
+        <h3 class="admin-chart-title">Slowest Pages</h3>
+        <div id="slowest-table"></div>
+    </div>
+</div>
+
+<script>
+const chartDefaults = {
+    color: '#a0a0a0',
+    borderColor: '#2a2a2c',
+    backgroundColor: 'transparent',
+};
+Chart.defaults.color = '#a0a0a0';
+Chart.defaults.borderColor = '#2a2a2c';
+
+let charts = {};
+let currentRange = '7d';
+
+function switchRange(range) {
+    currentRange = range;
+    document.querySelectorAll('.admin-range-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.range === range);
+    });
+    loadAllData();
+}
+
+function loadAllData() {
+    fetch('/api/admin/analytics/visitors?range=' + currentRange)
+        .then(r => r.json())
+        .then(data => {
+            renderVisitorChart(data.trend || []);
+            renderPagesChart(data.pages || []);
+            renderGeoTable(data.geo || []);
+            if (data.stats) {
+                document.getElementById('stat-visitors').textContent = data.stats.unique_visitors;
+                document.getElementById('stat-views').textContent = data.stats.total_views;
+            }
+        });
+
+    fetch('/api/admin/analytics/performance?range=' + currentRange)
+        .then(r => r.json())
+        .then(data => {
+            renderResponseChart(data.avg_response || []);
+            renderStatusChart(data.status_codes || []);
+            renderHourlyChart(data.hourly || []);
+            renderSlowestTable(data.slowest || []);
+            if (data.stats) {
+                document.getElementById('stat-response').textContent = Math.round(data.stats.avg_response_ms) + 'ms';
+                document.getElementById('stat-errors').textContent = data.stats.error_rate.toFixed(1) + '%';
+            }
+        });
+}
+
+function destroyChart(id) {
+    if (charts[id]) { charts[id].destroy(); }
+}
+
+function renderVisitorChart(data) {
+    destroyChart('visitors');
+    const ctx = document.getElementById('chart-visitors').getContext('2d');
+    charts['visitors'] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: data.map(d => d.date.slice(5)),
+            datasets: [{
+                label: 'Unique Visitors',
+                data: data.map(d => d.count),
+                borderColor: '#e2b384',
+                backgroundColor: 'rgba(226,179,132,0.1)',
+                fill: true,
+                tension: 0.3,
+                pointRadius: 3,
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { display: false } } }
+    });
+}
+
+function renderPagesChart(data) {
+    destroyChart('pages');
+    const ctx = document.getElementById('chart-pages').getContext('2d');
+    charts['pages'] = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: data.map(d => d.page_path),
+            datasets: [{
+                data: data.map(d => d.total_views),
+                backgroundColor: '#e2b384',
+                borderRadius: 4,
+            }]
+        },
+        options: {
+            indexAxis: 'y',
+            responsive: true,
+            plugins: { legend: { display: false } },
+        }
+    });
+}
+
+function renderStatusChart(data) {
+    destroyChart('status');
+    const ctx = document.getElementById('chart-status').getContext('2d');
+    const colors = { '2xx': '#6bcb77', '3xx': '#e2b384', '4xx': '#ffd93d', '5xx': '#ff6b6b', 'other': '#666' };
+    charts['status'] = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: data.map(d => d.category),
+            datasets: [{
+                data: data.map(d => d.count),
+                backgroundColor: data.map(d => colors[d.category] || '#666'),
+                borderWidth: 0,
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { position: 'bottom' } } }
+    });
+}
+
+function renderResponseChart(data) {
+    destroyChart('response');
+    const ctx = document.getElementById('chart-response').getContext('2d');
+    charts['response'] = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: data.map(d => d.date.slice(5)),
+            datasets: [{
+                label: 'Avg Response (ms)',
+                data: data.map(d => d.avg),
+                borderColor: '#6bcb77',
+                backgroundColor: 'rgba(107,203,119,0.1)',
+                fill: true,
+                tension: 0.3,
+                pointRadius: 3,
+            }]
+        },
+        options: { responsive: true, plugins: { legend: { display: false } } }
+    });
+}
+
+function renderHourlyChart(data) {
+    destroyChart('hourly');
+    const ctx = document.getElementById('chart-hourly').getContext('2d');
+    const hours = Array.from({length: 24}, (_, i) => i);
+    const counts = hours.map(h => {
+        const found = data.find(d => d.hour === h);
+        return found ? found.count : 0;
+    });
+    charts['hourly'] = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: hours.map(h => h + ':00'),
+            datasets: [{
+                data: counts,
+                backgroundColor: '#e2b384',
+                borderRadius: 2,
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: { legend: { display: false } },
+            scales: { x: { ticks: { maxTicksLimit: 12 } } }
+        }
+    });
+}
+
+function renderGeoTable(data) {
+    let html = '<table class="admin-data-table"><tr><th>City</th><th>Visitors</th><th>%</th></tr>';
+    data.forEach(d => {
+        html += '<tr><td>' + d.city + '</td><td>' + d.count + '</td><td>' + d.percent.toFixed(1) + '%</td></tr>';
+    });
+    html += '</table>';
+    document.getElementById('geo-table').innerHTML = html;
+}
+
+function renderSlowestTable(data) {
+    let html = '<table class="admin-data-table"><tr><th>Path</th><th>Avg (ms)</th><th>Requests</th></tr>';
+    data.forEach(d => {
+        html += '<tr><td>' + d.path + '</td><td>' + d.avg_ms.toFixed(1) + '</td><td>' + d.req_count + '</td></tr>';
+    });
+    html += '</table>';
+    document.getElementById('slowest-table').innerHTML = html;
+}
+
+// Load on page load.
+document.addEventListener('DOMContentLoaded', loadAllData);
+</script>
+{{end}}

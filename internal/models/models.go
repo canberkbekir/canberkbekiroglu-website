@@ -66,6 +66,13 @@ type Skill struct {
 	Items    []string
 }
 
+// FilterTagView represents a filter tag for template rendering.
+type FilterTagView struct {
+	Slug   string
+	Label  string
+	IsGold bool
+}
+
 // ContactForm represents an incoming contact form submission.
 type ContactForm struct {
 	Name     string

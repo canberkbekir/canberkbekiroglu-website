@@ -4,19 +4,25 @@ import (
 	"encoding/json"
 	"log"
 	"net/http"
+	"regexp"
 	"strings"
 
+	"github.com/canberkbekiroglu/website/internal/mailer"
 	"github.com/canberkbekiroglu/website/internal/templates"
 )
+
+var emailRegex = regexp.MustCompile(`^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$`)
 
 // API holds API route handlers.
 type API struct {
 	renderer *templates.Renderer
+	mailer   *mailer.Mailer // nil if SMTP is not configured
+	csrf     *CSRFManager
 }
 
 // NewAPI creates a new API handler group.
-func NewAPI(r *templates.Renderer) *API {
-	return &API{renderer: r}
+func NewAPI(r *templates.Renderer, m *mailer.Mailer, csrf *CSRFManager) *API {
+	return &API{renderer: r, mailer: m, csrf: csrf}
 }
 
 // HandleContactSubmit processes the contact form submission via HTMX.
@@ -24,6 +30,13 @@ func (a *API) HandleContactSubmit(w http.ResponseWriter, r *http.Request) {
 	if err := r.ParseForm(); err != nil {
 		w.WriteHeader(http.StatusBadRequest)
 		writeContactResponse(w, a.renderer, false, "Invalid form data.")
+		return
+	}
+
+	// CSRF validation.
+	if !a.csrf.Validate(r) {
+		w.WriteHeader(http.StatusForbidden)
+		writeContactResponse(w, a.renderer, false, "Invalid or expired form token. Please reload the page and try again.")
 		return
 	}
 
@@ -46,7 +59,7 @@ func (a *API) HandleContactSubmit(w http.ResponseWriter, r *http.Request) {
 	}
 	if email == "" {
 		errors = append(errors, "Email is required.")
-	} else if !strings.Contains(email, "@") || !strings.Contains(email, ".") {
+	} else if !emailRegex.MatchString(email) {
 		errors = append(errors, "Please enter a valid email address.")
 	}
 	if subject == "" {
@@ -62,8 +75,16 @@ func (a *API) HandleContactSubmit(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	// In a real app, you'd send an email or store in a database here.
-	log.Printf("Contact form submission: name=%q email=%q subject=%q message=%q", name, email, subject, message)
+	log.Printf("Contact form submission: name=%q email=%q subject=%q", name, email, subject)
+
+	if a.mailer != nil {
+		if err := a.mailer.SendContactNotification(name, email, subject, message); err != nil {
+			log.Printf("Failed to send contact notification email: %v", err)
+		}
+		if err := a.mailer.SendConfirmation(email, name); err != nil {
+			log.Printf("Failed to send confirmation email to %s: %v", email, err)
+		}
+	}
 
 	writeContactResponse(w, a.renderer, true, "Thank you! Your message has been sent successfully.")
 }

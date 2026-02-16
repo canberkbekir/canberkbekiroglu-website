@@ -3,21 +3,21 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{if .Title}}{{.Title}} — {{end}}Canberk Bekiroglu</title>
+    <title>{{if .Title}}{{.Title}} — {{end}}Admin Panel</title>
     <link rel="icon" type="image/svg+xml" href="/static/favicon.svg">
     <link rel="stylesheet" href="/static/fonts/inter.css">
     <link rel="stylesheet" href="/static/css/main.css">
-    <link rel="stylesheet" href="/static/css/components.css">
-    {{block "head" .}}{{end}}
+    <link rel="stylesheet" href="/static/css/admin.css">
     <script src="https://unpkg.com/htmx.org@2.0.4" integrity="sha384-HGfztofotfshcF7+8n44JQL2oJmowVChPTg48S+jvZoztPfvwD79OC/LTtG6dMp+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
+    {{block "head" .}}{{end}}
 </head>
-<body class="pointer-relative">
-    {{template "nav" .}}
-    <main>
-        {{block "content" .}}{{end}}
-    </main>
-    {{template "footer" .}}
-    <div id="form-result"></div>
-    <script src="/static/js/site.js"></script>
+<body class="admin-body">
+    <div class="admin-layout">
+        {{template "admin_nav" .}}
+        <main class="admin-main">
+            {{block "admin_content" .}}{{end}}
+        </main>
+    </div>
 </body>
 </html>

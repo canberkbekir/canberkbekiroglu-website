@@ -1,0 +1,47 @@
+{{define "admin_content"}}
+<div class="admin-page-header">
+    <h1 class="admin-page-title">Sections</h1>
+</div>
+
+<div class="admin-chart-panel" style="margin-bottom:24px;">
+    <h3 class="admin-chart-title">Add New Section</h3>
+    <form method="POST" action="/admin/sections" class="admin-inline-form">
+        <input type="hidden" name="_csrf" value="{{.CSRFToken}}">
+        <input type="text" name="name" class="admin-inline-input" placeholder="Section Name" required style="flex:2;">
+        <input type="text" name="slug" class="admin-inline-input" placeholder="slug" required style="flex:1;" pattern="[a-z0-9\-]+">
+        <input type="number" name="sort_order" class="admin-inline-input" placeholder="Order" value="0" style="width:70px;">
+        <button type="submit" class="admin-btn admin-btn--primary admin-btn--sm">Add</button>
+    </form>
+</div>
+
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Slug</th>
+            <th>Sort Order</th>
+            <th style="width:120px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{range .Sections}}
+        <tr id="section-row-{{.ID}}">
+            <td>{{.Name}}</td>
+            <td style="color:#a0a0a0;">{{.Slug}}</td>
+            <td>{{.SortOrder}}</td>
+            <td>
+                <div style="display:flex;gap:6px;">
+                    <button class="admin-btn admin-btn--danger admin-btn--sm"
+                            hx-delete="/admin/sections/{{.ID}}"
+                            hx-target="#section-row-{{.ID}}"
+                            hx-swap="outerHTML"
+                            hx-confirm="Delete section '{{.Name}}'?">Delete</button>
+                </div>
+            </td>
+        </tr>
+        {{else}}
+        <tr><td colspan="4" style="text-align:center;color:#666;padding:32px;">No sections yet.</td></tr>
+        {{end}}
+    </tbody>
+</table>
+{{end}}

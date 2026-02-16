@@ -3,9 +3,11 @@ package handlers
 import (
 	"html/template"
 	"net/http"
+	"net/url"
 	"os"
 	"path/filepath"
 
+	"github.com/canberkbekiroglu/website/internal/admin"
 	"github.com/canberkbekiroglu/website/internal/models"
 	"github.com/canberkbekiroglu/website/internal/templates"
 	"github.com/go-chi/chi/v5"
@@ -14,20 +16,33 @@ import (
 // Pages holds page route handlers.
 type Pages struct {
 	renderer   *templates.Renderer
-	data       *models.PortfolioData
+	db         *admin.DB
 	contentDir string
+	csrf       *CSRFManager
 }
 
 // NewPages creates a new Pages handler group.
-func NewPages(r *templates.Renderer, data *models.PortfolioData, contentDir string) *Pages {
-	return &Pages{renderer: r, data: data, contentDir: contentDir}
+func NewPages(r *templates.Renderer, db *admin.DB, contentDir string, csrf *CSRFManager) *Pages {
+	return &Pages{renderer: r, db: db, contentDir: contentDir, csrf: csrf}
 }
 
 // HandleHome renders the portfolio home page.
 func (p *Pages) HandleHome(w http.ResponseWriter, r *http.Request) {
+	pd, err := p.db.LoadPortfolioData()
+	if err != nil {
+		http.Error(w, "Error loading data", http.StatusInternalServerError)
+		return
+	}
+	filterTags, err := p.db.LoadFilterTagsForTemplate()
+	if err != nil {
+		http.Error(w, "Error loading filter tags", http.StatusInternalServerError)
+		return
+	}
+
 	data := map[string]any{
 		"Title":      "Portfolio",
-		"YearGroups": models.GroupByYear(p.data.AllProjects()),
+		"YearGroups": models.GroupByYear(pd.AllProjects()),
+		"FilterTags": filterTags,
 	}
 	if err := p.renderer.Render(w, "home", data); err != nil {
 		http.Error(w, "Error rendering page", http.StatusInternalServerError)
@@ -46,8 +61,14 @@ func (p *Pages) HandleResume(w http.ResponseWriter, r *http.Request) {
 
 // HandleContact renders the contact form page.
 func (p *Pages) HandleContact(w http.ResponseWriter, r *http.Request) {
+	token, err := p.csrf.SetCookie(w)
+	if err != nil {
+		http.Error(w, "Error generating form token", http.StatusInternalServerError)
+		return
+	}
 	data := map[string]any{
-		"Title": "Contact",
+		"Title":     "Contact",
+		"CSRFToken": token,
 	}
 	if err := p.renderer.Render(w, "contact", data); err != nil {
 		http.Error(w, "Error rendering page", http.StatusInternalServerError)
@@ -57,15 +78,26 @@ func (p *Pages) HandleContact(w http.ResponseWriter, r *http.Request) {
 // HandleProject renders an individual project page.
 func (p *Pages) HandleProject(w http.ResponseWriter, r *http.Request) {
 	slug := chi.URLParam(r, "slug")
-	project := p.data.GetProjectBySlug(slug)
+
+	pd, err := p.db.LoadPortfolioData()
+	if err != nil {
+		http.Error(w, "Error loading data", http.StatusInternalServerError)
+		return
+	}
+
+	project := pd.GetProjectBySlug(slug)
 	if project == nil {
 		http.NotFound(w, r)
 		return
 	}
 
-	// If project has an external URL, redirect there
+	// If project has an external URL, redirect there (after validation).
 	if project.ExternalURL != "" {
-		http.Redirect(w, r, project.ExternalURL, http.StatusFound)
+		if isSafeRedirectURL(project.ExternalURL) {
+			http.Redirect(w, r, project.ExternalURL, http.StatusFound)
+		} else {
+			http.Error(w, "Invalid redirect URL", http.StatusBadRequest)
+		}
 		return
 	}
 
@@ -84,4 +116,14 @@ func (p *Pages) HandleProject(w http.ResponseWriter, r *http.Request) {
 	if err := p.renderer.Render(w, "project", data); err != nil {
 		http.Error(w, "Error rendering page", http.StatusInternalServerError)
 	}
+}
+
+// isSafeRedirectURL validates that a URL is an absolute HTTP(S) URL
+// to prevent open redirect attacks via protocol-relative or javascript: URLs.
+func isSafeRedirectURL(rawURL string) bool {
+	u, err := url.Parse(rawURL)
+	if err != nil {
+		return false
+	}
+	return u.Scheme == "https" || u.Scheme == "http"
 }

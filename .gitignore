@@ -41,3 +41,8 @@ Desktop.ini
 __debug_bin*
 
 .claude/
+
+# Analytics database
+data/*.db
+data/*.db-shm
+data/*.db-wal

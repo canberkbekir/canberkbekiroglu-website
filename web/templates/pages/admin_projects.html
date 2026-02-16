@@ -1,0 +1,52 @@
+{{define "admin_content"}}
+<div class="admin-page-header">
+    <h1 class="admin-page-title">Projects</h1>
+    <a href="/admin/projects/new" class="admin-btn admin-btn--primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+        New Project
+    </a>
+</div>
+
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Slug</th>
+            <th>Year</th>
+            <th>Category</th>
+            <th>Tags</th>
+            <th style="width:120px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{range .Projects}}
+        <tr id="project-row-{{.ID}}">
+            <td>
+                {{.Title}}
+                {{if .Highlighted}}<span class="admin-tag admin-tag--gold">Highlighted</span>{{end}}
+            </td>
+            <td style="color:#a0a0a0;">{{.Slug}}</td>
+            <td>{{.Year}}</td>
+            <td>{{.Category}}</td>
+            <td>
+                <div class="admin-tags-display">
+                    {{range .Tags}}<span class="admin-tag">{{.}}</span>{{end}}
+                </div>
+            </td>
+            <td>
+                <div style="display:flex;gap:6px;">
+                    <a href="/admin/projects/{{.ID}}/edit" class="admin-btn admin-btn--ghost admin-btn--sm">Edit</a>
+                    <button class="admin-btn admin-btn--danger admin-btn--sm"
+                            hx-delete="/admin/projects/{{.ID}}"
+                            hx-target="#project-row-{{.ID}}"
+                            hx-swap="outerHTML"
+                            hx-confirm="Delete '{{.Title}}'?">Delete</button>
+                </div>
+            </td>
+        </tr>
+        {{else}}
+        <tr><td colspan="6" style="text-align:center;color:#666;padding:32px;">No projects yet.</td></tr>
+        {{end}}
+    </tbody>
+</table>
+{{end}}

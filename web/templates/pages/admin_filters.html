@@ -1,0 +1,55 @@
+{{define "admin_content"}}
+<div class="admin-page-header">
+    <h1 class="admin-page-title">Filter Tags</h1>
+</div>
+
+<div class="admin-chart-panel" style="margin-bottom:24px;">
+    <h3 class="admin-chart-title">Add New Filter Tag</h3>
+    <form method="POST" action="/admin/filters" class="admin-inline-form">
+        <input type="hidden" name="_csrf" value="{{.CSRFToken}}">
+        <input type="text" name="slug" class="admin-inline-input" placeholder="slug" required style="flex:1;" pattern="[a-z0-9\-]+">
+        <input type="text" name="label" class="admin-inline-input" placeholder="LABEL" required style="flex:2;">
+        <input type="number" name="sort_order" class="admin-inline-input" placeholder="Order" value="0" style="width:70px;">
+        <label class="admin-form-checkbox" style="white-space:nowrap;">
+            <input type="checkbox" name="is_gold">
+            <span style="font-size:13px;">Gold</span>
+        </label>
+        <button type="submit" class="admin-btn admin-btn--primary admin-btn--sm">Add</button>
+    </form>
+</div>
+
+<table class="admin-table">
+    <thead>
+        <tr>
+            <th>Slug</th>
+            <th>Label</th>
+            <th>Style</th>
+            <th>Sort Order</th>
+            <th style="width:120px;">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {{range .FilterTags}}
+        <tr id="filter-row-{{.ID}}">
+            <td style="color:#a0a0a0;">{{.Slug}}</td>
+            <td>{{.Label}}</td>
+            <td>
+                {{if .IsGold}}<span class="admin-tag admin-tag--gold">Gold</span>{{else}}<span class="admin-tag">Default</span>{{end}}
+            </td>
+            <td>{{.SortOrder}}</td>
+            <td>
+                <div style="display:flex;gap:6px;">
+                    <button class="admin-btn admin-btn--danger admin-btn--sm"
+                            hx-delete="/admin/filters/{{.ID}}"
+                            hx-target="#filter-row-{{.ID}}"
+                            hx-swap="outerHTML"
+                            hx-confirm="Delete filter tag '{{.Label}}'?">Delete</button>
+                </div>
+            </td>
+        </tr>
+        {{else}}
+        <tr><td colspan="5" style="text-align:center;color:#666;padding:32px;">No filter tags yet.</td></tr>
+        {{end}}
+    </tbody>
+</table>
+{{end}}

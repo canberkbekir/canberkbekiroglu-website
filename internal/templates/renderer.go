@@ -68,15 +68,23 @@ func New(baseDir string) (*Renderer, error) {
 		return nil, fmt.Errorf("finding pages: %w", err)
 	}
 
+	adminLayoutFile := filepath.Join(baseDir, "layouts", "admin.html")
+
 	// For each page, parse layout + partials + that page together.
 	for _, page := range pages {
 		name := strings.TrimSuffix(filepath.Base(page), ".html")
 
-		files := []string{layoutFile}
+		// Use admin layout for admin_ prefixed pages.
+		layout := layoutFile
+		if strings.HasPrefix(name, "admin_") {
+			layout = adminLayoutFile
+		}
+
+		files := []string{layout}
 		files = append(files, partials...)
 		files = append(files, page)
 
-		t, err := template.New(filepath.Base(layoutFile)).Funcs(templateFuncs()).ParseFiles(files...)
+		t, err := template.New(filepath.Base(layout)).Funcs(templateFuncs()).ParseFiles(files...)
 		if err != nil {
 			return nil, fmt.Errorf("parsing template %q: %w", name, err)
 		}
@@ -105,5 +113,13 @@ func (r *Renderer) Render(w io.Writer, name string, data any) error {
 	if !ok {
 		return fmt.Errorf("template %q not found", name)
 	}
+
+	// Partials use {{define "block_name"}} so we need ExecuteTemplate
+	// with the block name (partial_ prefix stripped) instead of Execute.
+	if strings.HasPrefix(name, "partial_") {
+		blockName := strings.TrimPrefix(name, "partial_")
+		return t.ExecuteTemplate(w, blockName, data)
+	}
+
 	return t.Execute(w, data)
 }
