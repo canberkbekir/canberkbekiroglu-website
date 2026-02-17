@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><%= title ? title + ' — ' : '' %>Canberk Bekiroglu</title>
+    <link rel="icon" type="image/svg+xml" href="<%= root %>/static/favicon.svg">
+    <link rel="stylesheet" href="<%= root %>/static/fonts/inter.css">
+    <link rel="stylesheet" href="<%= root %>/static/css/main.css">
+    <link rel="stylesheet" href="<%= root %>/static/css/components.css">
+    <%- typeof headExtra !== 'undefined' ? headExtra : '' %>
+</head>
+<body class="pointer-relative">
+    <%- include('../partials/nav', { title: title, root: root }) %>
+    <main>
+        <%- content %>
+    </main>
+    <%- include('../partials/footer', { root: root }) %>
+    <script src="<%= root %>/static/js/site.js"></script>
+</body>
+</html>

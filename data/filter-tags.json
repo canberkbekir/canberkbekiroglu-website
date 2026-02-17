@@ -1,0 +1,8 @@
+[
+  { "slug": "all", "label": "ALL", "isGold": false },
+  { "slug": "highlighted", "label": "HIGHLIGHTED", "isGold": true },
+  { "slug": "awards", "label": "AWARDS & NOMINEES", "isGold": true },
+  { "slug": "games", "label": "GAMES", "isGold": false },
+  { "slug": "tools", "label": "TOOLS", "isGold": false },
+  { "slug": "others", "label": "OTHERS", "isGold": false }
+]

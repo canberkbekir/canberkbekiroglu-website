@@ -1,0 +1,12 @@
+{
+  "name": "canberkbekiroglu-website-build",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Static site generator for canberkbekiroglu.com",
+  "scripts": {
+    "build": "node build.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.10"
+  }
+}

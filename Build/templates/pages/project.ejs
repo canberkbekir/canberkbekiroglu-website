@@ -1,0 +1,31 @@
+<section class="section">
+    <a href="<%= root %>/" class="back-link">&larr; Back to Portfolio</a>
+
+    <article class="project-detail">
+        <div class="project-hero">
+            <img src="<%= project.image.replace(/^\/static\//, root + '/static/') %>" alt="<%= project.title %>" class="project-hero-image">
+        </div>
+
+        <h1 class="project-title"><%= project.title %></h1>
+
+        <div class="project-meta">
+            <span class="project-company"><%= project.company %></span>
+            <span class="project-role"><%= project.role %></span>
+            <span class="project-date"><%= project.year %></span>
+        </div>
+
+        <div class="project-tags">
+            <% project.tags.forEach(function(tag) { %>
+            <span class="pill"><%= tag %></span>
+            <% }); %>
+        </div>
+
+        <div class="project-body">
+            <% if (typeof content !== 'undefined' && content) { %>
+            <%- content %>
+            <% } else { %>
+            <p><%= project.description %></p>
+            <% } %>
+        </div>
+    </article>
+</section>
